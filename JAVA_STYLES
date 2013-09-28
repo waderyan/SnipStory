@@ -1,0 +1,7 @@
+Below is the following coding styles we will use in our Java code. 
+
+1) Private variables inside of a class prefix with an underscore (ex. _id instead of id)
+2) Prefer camel case instead of underscore unless working with constants (ex. helloBob instead of hello_bob).
+3) Constants should be all capatalized with underscores between words (ex. HELLO_BOB).
+4) Use four space tabs for spacing and use the tab key not four spaces. 
+5) Utilize Design By Contract philiosophy. Each method should have a check of the inputs using assert or throwing an exception.
