@@ -18,7 +18,6 @@ public class UniqueEntity implements Serializable {
 	 */
 	protected UniqueEntity (UUID id) {
 		assert (true);
-
 		_id = (id != null ? id : UUID.randomUUID()); 
 	}
 

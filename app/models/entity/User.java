@@ -20,24 +20,6 @@ public class User {
 	// Constructor
 
 	/**
-	 * Checks if the given params are valid.
-	 * @return true if valid, false otherwise
-	 */
-	private static boolean isValidParams (String username, String email, String password, Date birthdate) {
-		return !StringUtils.isEmptyOrNull(username, email, password) 
-			&&  isValidBirthdate (birthdate);
-	}
-
-	/**
-	 * Checks if the birthdate is valid.
-	 * @param  birthdate
-	 * @return true if valid, false otherwise
-	 */
-	private static boolean isValidBirthdate (Date birthdate) {
-		return birthdate != null;
-	}
-
-	/**
 	 * Returns a new User object.
 	 * @param  username
 	 * @param  email
@@ -54,6 +36,24 @@ public class User {
 		_email = email;
 		_password = password;
 		_birthdate = birthdate;
+	}
+
+	/**
+	 * Checks if the given params are valid.
+	 * @return true if valid, false otherwise
+	 */
+	private static boolean isValidParams (String username, String email, String password, Date birthdate) {
+		return !StringUtils.isEmptyOrNull(username, email, password) 
+			&&  isValidBirthdate (birthdate);
+	}
+
+	/**
+	 * Checks if the birthdate is valid.
+	 * @param  birthdate
+	 * @return true if valid, false otherwise
+	 */
+	private static boolean isValidBirthdate (Date birthdate) {
+		return birthdate != null;
 	}
 
 	// Getters and Setters
