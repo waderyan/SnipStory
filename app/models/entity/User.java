@@ -1,15 +1,14 @@
-package models.user;
+package models.entity;
 
-import models.entity;
 import java.util.Date;
-import java.Calendar;
+import java.util.Calendar;
 import common.util.StringUtils;
 
 /** 
  * This <code> class </code> represents a User object. 
  * @author wadeanderson
  */
-public class User extends UniqueEntity {
+public class User {
 
 	// Fields
 
@@ -88,7 +87,7 @@ public class User extends UniqueEntity {
 		return _password;
 	}
 
-	public void setUsername (String password) {
+	public void setPassword (String password) {
 		if (StringUtils.isEmptyOrNull(password)) {
 			throw new IllegalArgumentException ("password cannot be empty or null");
 		}
@@ -97,14 +96,14 @@ public class User extends UniqueEntity {
 
 	public Date getBirthdate () {
 		assert (true);
-		return _username;
+		return _birthdate;
 	}
 
 	public void setBirthdate (Date birthdate) {
 		if (isValidBirthdate(birthdate)) {
 			throw new IllegalArgumentException ("birthdate is invalid");
 		}
-		_username = username;
+		_birthdate = birthdate;
 	}
 }
 

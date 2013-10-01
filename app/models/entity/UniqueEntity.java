@@ -1,6 +1,7 @@
 package models.entity;
 
 import java.util.UUID;
+import java.io.Serializable;
 
 /**
  * This class allows objects to be uniquely identified. 

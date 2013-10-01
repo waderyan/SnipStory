@@ -1,13 +1,15 @@
 package models.entity;
 
 import common.util.StringUtils;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * Class represents an <code>Abstract</code> <code>StoryItem</code>.
  * <code>StoryItem</code>s can be a variety of different types. Story items are what makes 
  * up someone's life story. 
  */
-public abstract class StoryItem extends UniqueEntity {
+public abstract class StoryItem  {
 
 	//
 	// Fields
@@ -23,19 +25,19 @@ public abstract class StoryItem extends UniqueEntity {
 	// Constructor
 	// 
 	
-	protected StoryItem (String description, Date date, String loc, String category, String filepath) {
+	public StoryItem (String description, Date date, String loc, String category, String filepath) {
 		if (!isValidParams(description, date, loc, category, filepath)) {
 			throw new IllegalArgumentException ("invalid parameters for story item");
 		}
 		_description = description;
 		_date = date;
-		_location = location;
+		_location = loc;
 		_category = category;
 		_filepath = filepath;
 	}
 
 	private boolean isValidParams (String description, Date date, String loc, String category, String filepath) {
-		return !StringUtils.isEmptyOrNull(descriptioin, loc, category, filepath) && isValidDate(date);
+		return !StringUtils.isEmptyOrNull(description, loc, category, filepath) && isValidDate(date);
 	}
 
 	private boolean isValidDate(Date date) {

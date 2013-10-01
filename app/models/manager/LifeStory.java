@@ -1,8 +1,9 @@
 package models.manager;
 
-import models.entity;
+import models.entity.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * This <code>class</code> stores a <code>collection</code> of story items.
@@ -39,7 +40,7 @@ public class LifeStory {
 	 * @param  user
 	 * @return true if params are valid, false otherwise
 	 */
-	private static isValidParams (User user) {
+	private static boolean isValidParams (User user) {
 		return user != null;
 	}
 
@@ -74,7 +75,7 @@ public class LifeStory {
 		if (itemData != null) {
 			throw new IllegalArgumentException ("itemData cannot be null");
 		}
-		return _storyItems.find(itemData);
+		return null;
 	}
 
 	/**

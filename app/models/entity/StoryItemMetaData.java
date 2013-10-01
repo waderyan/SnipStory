@@ -1,6 +1,8 @@
 package models.entity;
 
 import common.util.StringUtils;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * This class stores information regarding the meta data of story items. 
@@ -16,7 +18,7 @@ public class StoryItemMetaData extends UniqueEntity {
 		_value = value;
 	}
 
-	private static isValidParams (String name, String value) {
+	private static boolean isValidParams (String name, String value) {
 		return !StringUtils.isEmptyOrNull(name, value);
 	}
 }
