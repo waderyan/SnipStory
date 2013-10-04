@@ -16,7 +16,7 @@ public class LifeStory {
 	// 
 	
 	// Possibly we remove this list and store it all in the db
-	private List <StoryItem> _storyItems;
+	private List <LifeStoryEvent> _events;
 	private User _user;
 
 	//
@@ -32,7 +32,7 @@ public class LifeStory {
 			throw new IllegalArgumentException("invalid user");
 		}
 		_user = user;
-		_storyItems = new ArrayList<StoryItem>();
+		_events = new ArrayList<LifeStoryEvent>();
 	}
 
 	/**
@@ -45,33 +45,33 @@ public class LifeStory {
 	}
 
 	/**
-	 * Add a <code>StoryItem</code>
-	 * @param storyItem [description]
+	 * Add a <code>LifeStoryEvent</code>
+	 * @param LifeStoryEvent [description]
 	 */
-	public void add (StoryItem storyItem) {
-		if (storyItem != null) {
+	public void add (LifeStoryEvent lifeStoryEvent) {
+		if (lifeStoryEvent != null) {
 			throw new IllegalArgumentException ("story item cannot be null");
 		}
-		_storyItems.add(storyItem);
+		_events.add(lifeStoryEvent);
 	}
 
 	/**
-	 * Remove a <code>StoryItem</code>
-	 * @param storyItem [description]
+	 * Remove a <code>LifeStoryEvent</code>
+	 * @param LifeStoryEvent [description]
 	 */
-	public void remove (StoryItem storyItem) {
-		if (storyItem != null) {
+	public void remove (LifeStoryEvent lifeStoryEvent) {
+		if (lifeStoryEvent != null) {
 			throw new IllegalArgumentException ("story item cannot be null");
 		}
-		_storyItems.remove(storyItem);
+		_events.remove(lifeStoryEvent);
 	}
 
 	/**
-	 * Find a specific <code>StoryItem</code>
+	 * Find a specific <code>LifeStoryEvent</code>
 	 * @param  itemData [description]
-	 * @return specific <code>StoryItem</code>
+	 * @return specific <code>LifeStoryEvent</code>
 	 */
-	public StoryItem find (StoryItem itemData) {
+	public LifeStoryEvent find (LifeStoryEvent itemData) {
 		if (itemData != null) {
 			throw new IllegalArgumentException ("itemData cannot be null");
 		}
@@ -79,10 +79,10 @@ public class LifeStory {
 	}
 
 	/**
-	 * @return read-only <code>Collection</code> of <code>StoryItem</code>s.
+	 * @return read-only <code>Collection</code> of <code>LifeStoryEvent</code>s.
 	 */
-	public List<StoryItem> getStoryItems () {
-		return Collections.unmodifiableList(_storyItems);
+	public List<LifeStoryEvent> getLifeStoryEvents () {
+		return Collections.unmodifiableList(_events);
 	}
 
 }
