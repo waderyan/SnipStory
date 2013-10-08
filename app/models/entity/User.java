@@ -4,29 +4,13 @@ import java.util.Date;
 import java.util.Calendar;
 import common.util.StringUtils;
 
-/** 
- * This <code> class </code> represents a User object. 
- * @author wadeanderson
- */
 public class User {
-
-	// Fields
 
 	private String _username;
 	private String _email;
 	private String _password;
 	private Date _birthdate;
 
-	// Constructor
-
-	/**
-	 * Returns a new User object.
-	 * @param  username
-	 * @param  email
-	 * @param  password
-	 * @param  birthdate
-	 * @return
-	 */
 	public User (String username, String email, String password, Date birthdate) {
 		if(!isValidParams(username, email, password, birthdate)) {
 			throw new IllegalArgumentException ("invalid arguments for User constructor");
@@ -38,25 +22,14 @@ public class User {
 		_birthdate = birthdate;
 	}
 
-	/**
-	 * Checks if the given params are valid.
-	 * @return true if valid, false otherwise
-	 */
 	private static boolean isValidParams (String username, String email, String password, Date birthdate) {
 		return !StringUtils.isEmptyOrNull(username, email, password) 
 			&&  isValidBirthdate (birthdate);
 	}
 
-	/**
-	 * Checks if the birthdate is valid.
-	 * @param  birthdate
-	 * @return true if valid, false otherwise
-	 */
 	private static boolean isValidBirthdate (Date birthdate) {
 		return birthdate != null;
 	}
-
-	// Getters and Setters
 
 	public String getUsername () {
 		assert (true);

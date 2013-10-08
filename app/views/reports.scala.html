@@ -1,0 +1,23 @@
+@(invitees: List[InviteeUser])
+
+@admin("Invitee Reports") {
+	<h2>Invitee Reports</h2>
+	<table class="table table-striped table-bordered table-hovered">
+		<thead>
+			<th>#</th>
+			<th>Name</th>
+			<th>Email</th>
+		</thead>
+		<tbody>
+			@for((invitee, id) <- invitees.zipWithIndex) {
+				<tr>
+					<td>@(id + 1)</td>
+					<td>@invitee.name</td>
+					<td>@invitee.email</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+
+
