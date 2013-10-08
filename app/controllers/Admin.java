@@ -7,7 +7,11 @@ import views.html.*;
 
 public class Admin extends Controller {
 
-	public static Result reports() {
+	public static Result reports () {
+		return TODO;
+	}
+
+	public static Result addInvitee () {
 		return TODO;
 	}
 	
