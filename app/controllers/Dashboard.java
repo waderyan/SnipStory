@@ -9,16 +9,15 @@ import views.html.*;
 public class Dashboard extends Controller {
 
     public static Result index() {
-    	User user = User.getDummyUser();
+        User user = User.getDummyUser();
+        // We still need to figure out how the state will be mantained. 
+
         return ok(
-        	views.html.dashboard.render(
-	        	toolbar.render(user), 
-	        	timeline.render(user), 
-	        	storyitemsview.render(user)
+        	views.html.dashboard.dashboard.render(
+	        	views.html.dashboard.toolbar.render(), 
+	        	views.html.dashboard.timeline.render(), 
+	        	views.html.dashboard.storyitemsview.render()
 	    	)
         );
     }
-
-    // Below will be ajax get and post methods
-
 }

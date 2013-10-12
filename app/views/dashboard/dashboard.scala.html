@@ -1,0 +1,27 @@
+@(toolbar: Html)(timeline: Html)(storyitemsview: Html)
+
+@main("SnipStory") {
+
+	<div class="container-responsive">
+		<div class="heading">
+			<h3> SnipStory </h3>
+		</div>
+
+		@toolbar
+
+		<hr>
+
+		@timeline
+
+		<hr>
+
+		@storyitemsview
+
+		<div class="footer"></div>
+	</div>
+
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/dashboard.css")">
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/views/toolbar.js")"></script>
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/views/timeline.js")"></script>
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/views/storyitemsview.js")"></script>
+}
