@@ -2,9 +2,15 @@ package models.entity;
 
 import java.util.Date;
 
-public abstract class MediaItem extends StoryItem {
+import play.db.ebean.*;
+import play.data.validation.Constraints.*;
 
-	protected MediaItem (String description, Date date, String loc, String category, String filepath) {
+import javax.persistence.*;
+
+@Entity
+public class MediaItem extends StoryItem {
+
+	public MediaItem (String description, Date date, String loc, String category, String filepath) {
 		super (description, date, loc, category, filepath);
 	}
 }
