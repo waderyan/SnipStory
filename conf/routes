@@ -3,8 +3,6 @@
 # ~~~~
 
 GET     /                           controllers.Application.index()
-GET		/learnMore					controllers.Application.learnMore()
-GET 	/learnMore/details			controllers.Application.learnMoreDetails()
 GET		/admin						controllers.Admin.index()
 GET		/admin/reports 				controllers.Admin.reports()
 POST	/admin/addInvitee			controllers.Admin.addInvitee()
