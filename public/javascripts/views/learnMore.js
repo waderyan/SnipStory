@@ -3,23 +3,49 @@ $(function () {
 	function LearnMoreInfo (heading, txt, imgsrc) {
 		this.heading = heading;
 		this.txt = txt;
-		var imgFolder = '/assets/images/learnMore/'
+		var imgFolder = '/assets/images/landing/'
 		this.imgsrc = imgFolder + imgsrc;
 		this.headingId = heading.replace(/ /g,'');
 	}
-
-	function interestBtnHandler (btn, headingId) {
-		// Add analytic information here. 
-		// Could make some Google Analytics call. 
-		console.log("I am interested in " + headingId+ "!");
-
-		var ratingDiv = $('<div>Does this interest you?</div>');
-
-		$(btn).replaceWith(ratingDiv);
-	}
-
+	
 	function createLearnMoreRow (info, side) {
-		var row = $('<div></div>');
+
+		function createFeedbackForm (headingId) {
+
+			function createRating () {
+				var opts = [
+					'Extreme Importance',
+					'High Importance',
+					'Average Importance',
+					'Meh Importance'
+				];
+
+				var div = $(document.createElement('div'));
+				div.append('<em>How important would you rate this feature?  </em>');
+
+				var select = $('<select id="rating"></select>');
+				opts.forEach(function (opt) {
+					select.append('<option>' + opt + '</option>');
+				});
+
+				div.append(select);
+				return div;
+			}
+
+			var feedbackDiv = $('<div class="feedback"></div>');
+			var ratingDiv = createRating();
+			var commentBox = $('<textarea rows="3" placeholder="Share with us your thoughts..."></textarea>');
+			var submitBtn = $('<button class="btn btn-success">Submit Feedback</button>');
+
+			feedbackDiv.append(ratingDiv);
+			//feedbackDiv.append(emailBox);
+			feedbackDiv.append(commentBox);
+			feedbackDiv.append(submitBtn);
+
+			return feedbackDiv;
+		}
+
+		var row = $(document.createElement('div'));
 		row.addClass('row-fluid border');
 
 		var item = $('<div></div>');
@@ -27,10 +53,11 @@ $(function () {
 		item.append('<h2>' + info.heading + '</h2>');
 		item.append('<p>' + info.txt + '</p>');
 
-		var btn = $('<button>Does this interest you?</button>');
+		var btn = $('<button>I love this!</button>');
 		btn.addClass('btn btn-default');
 		btn.click(function () {
-			interestBtnHandler(this, info.headingId)
+			_gaq.push(['_trackEvent', 'btn-' + info.headingId, 'clicked']);
+			$(btn).replaceWith(createFeedbackForm(info.headingId));
 		});
 
 		item.append(btn);
@@ -47,6 +74,23 @@ $(function () {
 		}
 
 		return row;
+	}
+
+	function shuffle(arr) {
+		var currentIndex = arr.length,
+			tempVal,
+			randIndex;
+
+		while (0 != currentIndex) {
+			randIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+
+			tempVal = arr[currentIndex];
+			arr[currentIndex] = arr[randIndex];
+			arr[randIndex] = tempVal;
+		}
+
+		return arr;
 	}
 
 	var info = [
@@ -80,13 +124,12 @@ $(function () {
 	var view = $('#learnMore');
 	view.addClass('landing-main container-fluid');
 
+	info = shuffle(info); 
+
 	info.forEach(function (item, index) {
 		view.append(createLearnMoreRow(item, index % 2 == 0 ? 'left' : 'right'));
 	});
 });
-
-
-
 
 
 
