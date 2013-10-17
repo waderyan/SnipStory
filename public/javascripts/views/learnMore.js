@@ -38,7 +38,6 @@ $(function () {
 			var submitBtn = $('<button class="btn btn-success">Submit Feedback</button>');
 
 			feedbackDiv.append(ratingDiv);
-			//feedbackDiv.append(emailBox);
 			feedbackDiv.append(commentBox);
 			feedbackDiv.append(submitBtn);
 
@@ -48,8 +47,7 @@ $(function () {
 		var row = $(document.createElement('div'));
 		row.addClass('row-fluid border');
 
-		var item = $('<div></div>');
-		item.addClass('span4 offset1 padded text-left');
+		var item = $('<div></div>').addClass('span4 offset1 padded text-left');
 		item.append('<h2>' + info.heading + '</h2>');
 		item.append('<p>' + info.txt + '</p>');
 

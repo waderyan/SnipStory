@@ -27,8 +27,14 @@
 	cursor: pointer;
 }
 
+.learn-more p {
+	text-align: center;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
 .spacer {
-	margin: 10%;
+	margin: 50%;
 }
 
 .landing-main {
@@ -59,8 +65,7 @@
 }
 
 
-.span1, .span2, .span3, .span4, .span5, .span6,
-.span7, .span8, .span9, .span10, .span11, .span12 {
+.padded {
 	padding-top: 35px;
 	padding-bottom: 35px;
 }
@@ -74,27 +79,15 @@ img {
 	height:100%;
 }
 
-.rating {
-	width: 200px;
-	margin: 10px auto;
-}
-
-.rating span {
-	font-size: 40px;
-	color: orange;
-	cursor: pointer;
-}
-
-.rating span:hover:before {
-	content: "\2605";
-	position: absolute;
-	color: orange;
-}
-
 .feedback textarea {
 	width: 100%;
 }
 
-.feedback input {
+.learn-more input {
 	width: 100%;
 }
+
+
+
+
+
