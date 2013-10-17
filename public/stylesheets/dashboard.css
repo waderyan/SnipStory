@@ -23,7 +23,7 @@
 	margin-right: 20px;
 
 	text-align:center;
-	width: 50px;
+	width: 80px;
 }
 #carousel-demo1 {
 	height: 100px;
@@ -34,3 +34,9 @@
 	height: 100px;
 	width:  1000px;
 }
+
+.enlargedTimelineItem {
+	-webkit-transform: scale(2.5);
+	-webkit-transition-duration: 1s;
+}
+
