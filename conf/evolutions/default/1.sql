@@ -3,8 +3,15 @@
 
 # --- !Ups
 
+create table account (
+  email                     varchar(255) not null,
+  name                      varchar(255),
+  password                  varchar(255),
+  constraint pk_account primary key (email))
+;
+
 create table invitee_user (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   email                     varchar(255),
   constraint pk_invitee_user primary key (id))
@@ -78,15 +85,17 @@ create sequence user_seq;
 
 alter table story_item_meta_data add constraint fk_story_item_meta_data_storyi_1 foreign key (storyitem_id) references story_item (id) on delete restrict on update restrict;
 create index ix_story_item_meta_data_storyi_1 on story_item_meta_data (storyitem_id);
+>>>>>>> 8db90d9b124709d4231c4d7fe254d1af38163145
 
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists invitee_user;
+drop table account;
 
+drop table invitee_user;
 drop table if exists life_story;
 
 drop table if exists media_item;
@@ -101,7 +110,7 @@ drop table if exists user;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
-drop sequence if exists invitee_user_seq;
+SET FOREIGN_KEY_CHECKS=1;
 
 drop sequence if exists life_story_seq;
 
