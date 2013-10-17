@@ -8,3 +8,29 @@
 	margin: 4%;
 	display: inline;
 }
+
+.timelineItem {
+	background:#ccc;
+	border:1px solid #fff;
+	color:#666; 
+	float:left;
+	font-weight:bold;
+	font-size:8em;
+	height:40px;
+
+	padding:20px 0 0 0;
+	margin-left: 20px;
+	margin-right: 20px;
+
+	text-align:center;
+	width: 50px;
+}
+#carousel-demo1 {
+	height: 100px;
+	overflow: visible !important;
+}
+
+.carousel-wrap {
+	height: 100px;
+	width:  1000px;
+}
