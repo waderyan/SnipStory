@@ -1,0 +1,42 @@
+
+.heading {
+	margin: 1%;
+}
+
+
+.toolbox {
+	margin: 4%;
+	display: inline;
+}
+
+.timelineItem {
+	background:#ccc;
+	border:1px solid #fff;
+	color:#666; 
+	float:left;
+	font-weight:bold;
+	font-size:8em;
+	height:40px;
+
+	padding:20px 0 0 0;
+	margin-left: 20px;
+	margin-right: 20px;
+
+	text-align:center;
+	width: 80px;
+}
+#carousel-demo1 {
+	height: 100px;
+	overflow: visible !important;
+}
+
+.carousel-wrap {
+	height: 100px;
+	width:  1000px;
+}
+
+.enlargedTimelineItem {
+	-webkit-transform: scale(2.5);
+	-webkit-transition-duration: 1s;
+}
+

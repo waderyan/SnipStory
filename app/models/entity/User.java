@@ -4,81 +4,79 @@ import java.util.Date;
 import java.util.Calendar;
 import common.util.StringUtils;
 
-public class User {
+import play.db.ebean.*;
+import play.data.validation.Constraints.*;
+import play.data.format.*;
+import play.data.validation.*;
 
-	private String _username;
-	private String _email;
-	private String _password;
-	private Date _birthdate;
+import javax.persistence.*;
 
-	public User (String username, String email, String password, Date birthdate) {
+@Entity
+public class User extends Model {
+
+	@Id
+	public Long id;
+
+	@Email
+	@Required
+	public String username;
+
+	@Required
+	public String email;
+
+	@Required
+	public String password;
+
+	@Required
+	@Formats.DateTime(pattern="dd/MM/yyyy")
+	public Date birthdate;
+
+	public LifeStory lifestory;
+
+	public User (String usrnme, String eml, String pswd, Date bdate) {
 		if(!isValidParams(username, email, password, birthdate)) {
 			throw new IllegalArgumentException ("invalid arguments for User constructor");
 		}
 
-		_username = username;
-		_email = email;
-		_password = password;
-		_birthdate = birthdate;
+		username = usrnme;
+		email = eml;
+		password = pswd;
+		birthdate = bdate;
+		lifestory = new LifeStory(this);
 	}
 
 	private static boolean isValidParams (String username, String email, String password, Date birthdate) {
-		return !StringUtils.isEmptyOrNull(username, email, password) 
-			&&  isValidBirthdate (birthdate);
+		return true;
+		// Not working for some reason
+		// return isEmptyOrNull(username, email, password) 
+		// 	&&  isValidBirthdate (birthdate);
 	}
 
 	private static boolean isValidBirthdate (Date birthdate) {
 		return birthdate != null;
 	}
 
-	public String getUsername () {
-		assert (true);
-		return _username;
+	public static User getDummyUser() {
+		return new User("testdummy", "test@test.com", "test", new Date());
 	}
 
-	public void setUsername (String username) {
-		if (StringUtils.isEmptyOrNull(username)) {
-			throw new IllegalArgumentException ("username cannot be empty or null");
-		}
-		_username = username;
+	// DB Operations
+	
+	public static Finder<Long, User> find = new Finder(Long.class, User.class);
+
+	public static void create (String name, String email, String psd, Date bdate) {
+		new User(name, email, psd, bdate);
 	}
 
-	public String getEmail () {
-		assert (true);
-		return _email;
+	public static void delete (Long id) {
+		find.ref(id).delete();
 	}
 
-	public void setEmail (String email) {
-		if (StringUtils.isEmptyOrNull(email)) {
-			throw new IllegalArgumentException ("email cannot be empty or null");
-		}
-		_email = email;
-	}
-
-	public String getPassword () {
-		assert (true);
-		return _password;
-	}
-
-	public void setPassword (String password) {
-		if (StringUtils.isEmptyOrNull(password)) {
-			throw new IllegalArgumentException ("password cannot be empty or null");
-		}
-		_password = password;
-	}
-
-	public Date getBirthdate () {
-		assert (true);
-		return _birthdate;
-	}
-
-	public void setBirthdate (Date birthdate) {
-		if (isValidBirthdate(birthdate)) {
-			throw new IllegalArgumentException ("birthdate is invalid");
-		}
-		_birthdate = birthdate;
+	public static User find(Long id) {
+		return find.ref(id);
 	}
 }
+
 
 
 

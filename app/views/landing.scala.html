@@ -1,5 +1,8 @@
 @(title: String)
 
+<link rel="stylesheet" href='@routes.Assets.at("stylesheets/learnMore/learnMore.css")'/>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/views/learnMore.js")"></script>
+
 <div class="landing-main container-fluid">
 	<div class="row-fluid">
 		<div class="span11">
@@ -25,18 +28,21 @@
 					  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 					</div>
 				</div>
-				<div class="form-signup span4 offset1">
+				<div id="invite-form" class="form-signup span4 offset1">
 					<h2 class="form-signup-heading">Join Invite List</h2>
 					<input id="invite-email-field" type="text" class="input-block-level" placeholder="Email Address">
 					<input id="invite-name-field" type="text" class="input-block-level" placeholder="Name">
-					<button id="signup-btn" class="btn btn-large btn-primary">Sign Up</button>
+					<button style="float: left" id="signup-btn" class="btn btn-large btn-primary">Sign Up</button>
 				</div>
-			</div>
+			</div> 
 		</div>
 		<div class="learn-more row-fluid">
 			<div class="span11">
 				<a href="/learnMore"> <h3>Learn more.</h3> </a>
 			</div>
 		</div>
+		
+		<div id="learnMore"></div>
+
 	</div>		
 </div>

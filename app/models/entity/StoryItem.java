@@ -2,38 +2,42 @@ package models.entity;
 
 import common.util.StringUtils;
 import java.util.Date;
-import java.util.UUID;
+import play.db.ebean.*;
+import play.data.validation.Constraints.*;
 
-/**
- * Class represents an <code>Abstract</code> <code>StoryItem</code>.
- * <code>StoryItem</code>s can be a variety of different types. Story items are what makes 
- * up someone's life story. 
- */
-public abstract class StoryItem  {
+import javax.persistence.*;
 
-	//
-	// Fields
-	// 
+@Entity
+public abstract class StoryItem extends Model {
+
+	@Id
+	public Long id;
+
+	@Required
+	public String description;
+
+	@Required
+	public Date date;
+
+	@Required
+	public String location;
+
+	@Required
+	public String category;
+
+	@Required
+	public String filepath;
+
 	
-	private String _description;
-	private Date _date;
-	private String _location; // TODO - not sure if string is the best type.
-	private String _category; // TODO - may need to be enum
-	private String _filepath;
-
-	// 
-	// Constructor
-	// 
-	
-	public StoryItem (String description, Date date, String loc, String category, String filepath) {
-		if (!isValidParams(description, date, loc, category, filepath)) {
+	public StoryItem (String pdescription, Date pdate, String ploc, String pcategory, String pfilepath) {
+		if (!isValidParams(pdescription, pdate, ploc, pcategory, pfilepath)) {
 			throw new IllegalArgumentException ("invalid parameters for story item");
 		}
-		_description = description;
-		_date = date;
-		_location = loc;
-		_category = category;
-		_filepath = filepath;
+		description = pdescription;
+		date = pdate;
+		location = ploc;
+		category = pcategory;
+		filepath = pfilepath;
 	}
 
 	private boolean isValidParams (String description, Date date, String loc, String category, String filepath) {
