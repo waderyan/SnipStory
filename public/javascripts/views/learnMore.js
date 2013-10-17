@@ -36,6 +36,9 @@ $(function () {
 			var ratingDiv = createRating();
 			var commentBox = $('<textarea rows="3" placeholder="Share with us your thoughts..."></textarea>');
 			var submitBtn = $('<button class="btn btn-success">Submit Feedback</button>');
+			submitBtn.click(function() {
+				// TODO AJAX 
+			});
 
 			feedbackDiv.append(ratingDiv);
 			feedbackDiv.append(commentBox);
