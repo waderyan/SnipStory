@@ -56,7 +56,7 @@ public class Admin extends Controller {
 			session().clear();
 			session("email", loginForm.get().email);
 			return redirect(
-				routes.Admin.index()
+				routes.Application.index()
 			);
 		}
 	}

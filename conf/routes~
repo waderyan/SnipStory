@@ -13,6 +13,6 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET     /login                  controllers.Admin.login()
 
-POST	/login			controllers.Admin.authenticate()
+POST	/login		controllers.Admin.authenticate()
 
 
