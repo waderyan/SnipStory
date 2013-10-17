@@ -5,17 +5,45 @@
 <html>
     <head>
     	<title>@title</title>
-    	<link rel="stylesheet" href="@routes.Assets.at("stylesheets/libs/bootstrap.css")">
+
+
+        <!-- Google Analytics - Must be placed first for now. -->
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            // ID given by google analytics 
+          _gaq.push(
+                ['_setAccount', 'UA-44427379-1'],
+                ['_setDomainName', 'snipstory.com'],
+                ['_trackPageview']
+            );
+
+          (function() {
+            // Loads google analytics code. 
+            var ga = document.createElement('script'); 
+            ga.type = 'text/javascript'; 
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; 
+            s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+        <!-- Google Analytics -->
+
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/libs/bootstrap.css")">
+    	<link rel="stylesheet" href="@routes.Assets.at("stylesheets/libs/jquery.rating.css")">
 		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/libs/bootstrap-responsive.css")">
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script type="text/javascript" src="@routes.Assets.at("javascripts/libs/underscore.js")"></script>
         <script type="text/javascript" src="@routes.Assets.at("javascripts/libs/backbone.js")"></script>
         <script type="text/javascript" src="@routes.Assets.at("javascripts/libs/bootstrap.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/libs/jquery.raty.js")"></script>
         <script type="text/javascript" src="@routes.Assets.at("javascripts/views/landingpage.js")"></script>
         <script type="text/javascript" src="@routes.Assets.at("javascripts/views/admin.js")"></script>
+
+
     </head>
     <body>
         @content
