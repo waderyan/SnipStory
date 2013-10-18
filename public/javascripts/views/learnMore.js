@@ -34,10 +34,33 @@ $(function () {
 
 			var feedbackDiv = $('<div class="feedback"></div>');
 			var ratingDiv = createRating();
-			var commentBox = $('<textarea rows="3" placeholder="Share with us your thoughts..."></textarea>');
+			var commentBox = $('<textarea rows="3" id="commentBox" placeholder="Share with us your thoughts..."></textarea>');
 			var submitBtn = $('<button class="btn btn-success">Submit Feedback</button>');
 			submitBtn.click(function() {
-				// TODO AJAX 
+				var option = $("#rating").val();
+				var comments = $("#commentBox").val();
+
+				var request = $.ajax({
+					url: "http://localhost:9000/admin/createFeedbackForm",
+					type: "POST",
+					data: {rating : option, details: comments},
+					success: function () {
+						alert("Success!");
+						/*
+						form.empty();
+						form.append(
+						'<h2 class="form-signup-heading">Thank you!</h2>' +
+						'<h4>We\'ll be contacting you soon. ' +
+							'If you have any questions or comments please contact <a href="mailto:snipstory@gmail.com">snipstory@gmail.com</a>' +
+						'</h4>'
+						);
+						*/
+					},
+					error: function (xhr) {
+						console.log("failure!");
+						console.dir(xhr);
+					}
+				});
 			});
 
 			feedbackDiv.append(ratingDiv);
