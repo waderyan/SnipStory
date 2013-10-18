@@ -14,10 +14,10 @@ $(function () {
 
 			function createRating () {
 				var opts = [
-					'Extreme Importance',
-					'High Importance',
-					'Average Importance',
-					'Meh Importance'
+					'Extremely Important',
+					'Highly Important',
+					'Important',
+					'Meh'
 				];
 
 				var div = $(document.createElement('div'));
@@ -37,23 +37,24 @@ $(function () {
 			var commentBox = $('<textarea rows="3" id="commentBox" placeholder="Share with us your thoughts..."></textarea>');
 			var submitBtn = $('<button class="btn btn-success">Submit Feedback</button>');
 			submitBtn.click(function() {
-				var option = $("#rating").val();
-				var comments = $("#commentBox").val();
-
-				var request = $.ajax({
-					url: "http://localhost:9000/admin/addFeedback",
-					type: "POST",
-					data: {rating : option, details: comments},
-					success: function () {
-						feedbackDiv.empty();
-						feedbackDiv.append(
+				function thankUser () {
+					feedbackDiv.empty();
+					feedbackDiv.append(
 						'<h3 class="form-signup-heading">Thank you!</h3>' +
 						'<h4>Your feedback is greatly appreciated.</h4>'
-						);
+					);
+				}
+
+				$.ajax({
+					url: "http://localhost:9000/admin/addFeedback",
+					type: "POST",
+					data: {rating : $("#rating").val(), details: $("#commentBox").val()},
+					success: function () {
+						thankUser();
 					},
 					error: function (xhr) {
 						console.log("failure!");
-						console.dir(xhr);
+						thankUser();
 					}
 				});
 			});
