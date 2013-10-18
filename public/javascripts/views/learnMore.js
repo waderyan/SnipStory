@@ -73,7 +73,7 @@ $(function () {
 		item.append('<p>' + info.txt + '</p>');
 
 		var btn = $('<button>I love this!</button>');
-		btn.addClass('btn btn-default');
+		btn.addClass('btn btn-primary btn-lg');
 		btn.click(function () {
 			_gaq.push(['_trackEvent', 'btn-' + info.headingId, 'clicked']);
 			$(btn).replaceWith(createFeedbackForm(info.headingId));

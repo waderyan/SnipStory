@@ -33,6 +33,16 @@
 	margin-right: 20%;
 }
 
+.btn {
+	font-size: 30px;
+	padding: 20px;
+	color: black;
+}
+
+.btn:hover {
+	background-color: gray;
+}
+
 .spacer {
 	margin: 50%;
 }
