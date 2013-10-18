@@ -29,6 +29,13 @@ public class Admin extends Controller {
 		InviteeUser.create(requestData.get("name"), requestData.get("email"));
 		return ok();
 	}
+
+	public static Result addFeedback () {
+		DynamicForm requestData = new DynamicForm().bindFromRequest();
+		// TODO need some SQL Sanitation either here or in InviteeUser.create
+		FeedbackInfo.create(requestData.get("rating"), requestData.get("details"));
+		return ok();
+	}
 	
 	// Login & Authentication
 	
