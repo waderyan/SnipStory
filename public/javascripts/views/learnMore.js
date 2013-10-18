@@ -45,16 +45,11 @@ $(function () {
 					type: "POST",
 					data: {rating : option, details: comments},
 					success: function () {
-						alert("Success!");
-						/*
-						form.empty();
-						form.append(
-						'<h2 class="form-signup-heading">Thank you!</h2>' +
-						'<h4>We\'ll be contacting you soon. ' +
-							'If you have any questions or comments please contact <a href="mailto:snipstory@gmail.com">snipstory@gmail.com</a>' +
-						'</h4>'
+						feedbackDiv.empty();
+						feedbackDiv.append(
+						'<h3 class="form-signup-heading">Thank you!</h3>' +
+						'<h4>Your feedback is greatly appreciated.</h4>'
 						);
-						*/
 					},
 					error: function (xhr) {
 						console.log("failure!");
