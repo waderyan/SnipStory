@@ -14,6 +14,7 @@ public class Admin extends Controller {
 		return redirect(routes.Admin.reports());
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static Result reports () {
 		return ok(views.html.reports.render(InviteeUser.all()));
 	}
@@ -27,6 +28,12 @@ public class Admin extends Controller {
 		// TODO need some SQL Sanitation either here or in InviteeUser.create
 		InviteeUser.create(requestData.get("name"), requestData.get("email"));
 		return ok();
+	}
+
+	public static Result addFeedback () {
+		DynamicForm requestData = new DynamicForm().bindFromRequest();
+		// TODO need some SQL Sanitation either here or in InviteeUser.create
+		FeedbackInfo.create(requestData.get("rating"), requestData.get("details"));
 	}
 	
 	// Login & Authentication

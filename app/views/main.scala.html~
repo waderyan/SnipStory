@@ -30,6 +30,7 @@
         <!-- Google Analytics -->
 
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/libs/bootstrap.css")">
+    	<link rel="stylesheet" href="@routes.Assets.at("stylesheets/libs/jquery.rating.css")">
 		<link rel="stylesheet" href="@routes.Assets.at("stylesheets/libs/bootstrap-responsive.css")">
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
