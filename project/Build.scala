@@ -13,7 +13,7 @@ object ApplicationBuild extends Build {
     javaJdbc,
     javaEbean,
     cache,
-    "org.hibernate" % "hibernate-entitymanager" % "3.6.9.Final",
+    //"org.hibernate" % "hibernate-entitymanager" % "3.6.9.Final",
     "mysql" % "mysql-connector-java" % "5.1.18"
   )
 
@@ -21,6 +21,4 @@ object ApplicationBuild extends Build {
     // Add your own project settings here
   )
   
-  val 
-
 }

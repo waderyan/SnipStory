@@ -14,6 +14,7 @@ public class Admin extends Controller {
 		return redirect(routes.Admin.reports());
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static Result reports () {
 		return ok(views.html.reports.render(InviteeUser.all()));
 	}
