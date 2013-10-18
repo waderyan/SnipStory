@@ -41,7 +41,7 @@ $(function () {
 				var comments = $("#commentBox").val();
 
 				var request = $.ajax({
-					url: "http://localhost:9000/admin/createFeedbackForm",
+					url: "http://localhost:9000/admin/addFeedback",
 					type: "POST",
 					data: {rating : option, details: comments},
 					success: function () {
