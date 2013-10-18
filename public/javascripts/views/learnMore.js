@@ -121,27 +121,27 @@ $(function () {
 		new LearnMoreInfo (
 			'Intuitively Organized'
 			, 'We let you organize your memories the same way that you remember them. Your Timeline is divided into Chapters (such as “College Years”), and Chapters consist of Events (like “Graduation” or “Dorm Pranks”). Arrange your memories based on what makes sense to you, not based on the sizes of the shoeboxes in your attic.'
-			, 'img3.jpg'
+			, 'LearnMoreOrganize.png'
 		), new LearnMoreInfo (
 			'Made to be Shared'
 			, 'No one likes to play alone, so share your events with friends and family through social media or email. Or link events together with your friends and family to create stories collaboratively.'
-			, 'img3.jpg'
+			, 'LearnMoreCollaborate.png'
 		), new LearnMoreInfo (
 			'Simple to Print'
 			, 'Creating hard copies of your digital memories couldn’t be simpler. Print specific events or all of them. Print it yourself or let us do it and we’ll ship it to you for free.'
-			, 'img3.jpg'
+			, 'LearnMorePrint.png'
 		), new LearnMoreInfo (
 			'Enhance your Timeline'
 			, 'Pictures, Video, Audio, or Text--whatever form your life takes, we can handle it. Our audio captioning feature allows you to record every detail without ever touching a keyboard.'
-			, 'img3.jpg'
+			, 'LearnMoreMedia.png'
 		), new LearnMoreInfo (
 			'Easy as Pie'
 			, 'We use large icons, simple menus, and drag-and-drop functionality to make recording your memories easy. Feel like an expert from your first time on the site.'
-			, 'img3.jpg'
+			, 'LearnMorePie.png'
 		), new LearnMoreInfo (
 			'For the Road'
 			, 'Have some downtime in the airport? Our mobile app brings your life to your phone.  Easily record or enhance the details of your events on the go.'
-			, 'img3.jpg'
+			, 'LearnMoreMobile.png'
 		)
 	];
 

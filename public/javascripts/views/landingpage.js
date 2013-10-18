@@ -28,6 +28,16 @@ $(function () {
 			return;
 		}
 
+		function thankUser () {
+			form.empty();
+			form.append(
+				'<h2 class="form-signup-heading">Thank you!</h2>' +
+				'<h4>We\'ll be contacting you soon. ' +
+					'If you have any questions or comments please contact <a href="mailto:snipstory@gmail.com">snipstory@gmail.com</a>' +
+				'</h4>'
+			);
+		}
+
 		$.ajax({
 			type: "POST",
 			url: "http://localhost:9000/admin/addInvitee",
@@ -36,17 +46,10 @@ $(function () {
 				email: emailfield.val()
 			},
 			success: function () {
-				form.empty();
-				form.append(
-					'<h2 class="form-signup-heading">Thank you!</h2>' +
-					'<h4>We\'ll be contacting you soon. ' +
-						'If you have any questions or comments please contact <a href="mailto:snipstory@gmail.com">snipstory@gmail.com</a>' +
-					'</h4>'
-				);
+				thankUser();
 			},
 			error: function (xhr) {
-				console.log("failure!");
-				console.dir(xhr);
+				thankUser();
 			}
 
 		});
