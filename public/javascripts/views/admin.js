@@ -6,11 +6,13 @@ $(function () {
 
 		function populateTable (tableItems) {
 			for (var i = 0; i < tableItems.length; i++) {
+				var email = tableItems[i].email;
+				var name = tableItems[i].name;
 				table.append(
 					'<tr>' +
 						'<td>' + (i+1) + '</td>' +
-						'<td>' + tableItems[i].name + '</td>' +
-						'<td>'+ tableItems[i].email + '</td>' +
+						'<td>' + name + '</td>' +
+						'<td><a href="mailto:'+ name + '">' + name + '</a></td>' +
 					'</tr>'
 				);
 			}
@@ -19,7 +21,7 @@ $(function () {
 		$.ajax({
 			type: 'GET',
 			dataType: "json",
-			url: 'http://localhost:9000/admin/invitees',
+			url: 'http://' + document.location.host + '/admin/invitees',
 			success: function (data) {
 				populateTable(data)
 			},

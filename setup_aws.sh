@@ -8,6 +8,7 @@ sudo apt-get install default-jdk
 sudo apt-get install scala
 sudo apt-get install git
 sudo apt-get install mysql-server
+# password 'snipstory'
 sudo apt-get install unzip
 
 

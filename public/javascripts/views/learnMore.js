@@ -46,7 +46,7 @@ $(function () {
 				}
 
 				$.ajax({
-					url: "http://localhost:9000/admin/addFeedback",
+					url: "http://" + document.location.host + "/admin/addFeedback",
 					type: "POST",
 					data: {rating : $("#rating").val(), details: $("#commentBox").val()},
 					success: function () {

@@ -6,18 +6,12 @@ $(function () {
 		var form = $("#invite-form");
 
 		function validateEmail (emailCan) {
-			// obtained from http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
 			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     		return re.test(emailCan);
 		}
 
 		function validateName (nameCan) {
 			return nameCan != null && nameCan.trim() != "";
-		}
-
-		function clearForm () {
-			emailfield.val("");
-			namefield.val("");
 		}
 
 		if ( !validateEmail(emailfield.val()) ) {
@@ -40,7 +34,7 @@ $(function () {
 
 		$.ajax({
 			type: "POST",
-			url: "http://localhost:9000/admin/addInvitee",
+			url: "http://" + document.location.host + "/admin/addInvitee",
 			data: {
 				name: namefield.val(),
 				email: emailfield.val()
