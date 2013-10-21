@@ -12,7 +12,7 @@ $(function () {
 					'<tr>' +
 						'<td>' + (i+1) + '</td>' +
 						'<td>' + name + '</td>' +
-						'<td><a href="mailto:'+ name + '">' + name + '</a></td>' +
+						'<td><a href="mailto:'+ email + '">' + email + '</a></td>' +
 					'</tr>'
 				);
 			}
