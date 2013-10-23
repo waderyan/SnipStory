@@ -4,8 +4,9 @@ import play.*;
 import play.mvc.*;
 import play.data.*;
 import static play.libs.Json.toJson;
+import play.Logger;
 
-import models.*;
+import models.admin.*;
 import views.html.*;
 
 public class Admin extends Controller {
@@ -16,7 +17,7 @@ public class Admin extends Controller {
 
 	@Security.Authenticated(Secured.class)
 	public static Result reports () {
-		return ok(views.html.reports.render(InviteeUser.all()));
+		return ok(views.html.admin.reports.render());
 	}
 
 	public static Result getInvitees () {
@@ -31,8 +32,12 @@ public class Admin extends Controller {
 
 	public static Result addFeedback () {
 		DynamicForm requestData = new DynamicForm().bindFromRequest();
-		FeedbackInfo.create(requestData.get("rating"), requestData.get("details"));
+		FeedbackInfo.create(requestData.get("feature"), requestData.get("email"), requestData.get("details"));
 		return ok();
+	}
+
+	public static Result getFeedback () {
+		return ok(toJson(FeedbackInfo.all()));
 	}
 	
 	// Login & Authentication
@@ -51,14 +56,14 @@ public class Admin extends Controller {
 	
 	public static Result login() {
 		return ok(
-			login.render(Form.form(Login.class))
+			views.html.admin.login.render(Form.form(Login.class))
 		);
 	}
 	
 	public static Result authenticate() {
 		Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
 		if (loginForm.hasErrors()) {
-			return badRequest(login.render(loginForm));
+			return badRequest(views.html.admin.login.render(loginForm));
 		} else {
 			session().clear();
 			session("email", loginForm.get().email);

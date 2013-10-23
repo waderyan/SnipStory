@@ -1,4 +1,4 @@
-package models;
+package models.admin;
 
 import java.util.*;
 import javax.persistence.*;

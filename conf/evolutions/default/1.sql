@@ -9,28 +9,29 @@ create table account (
 ;
 
 create table feedback_info (
-  id                        bigint not null,
-  importance_rating         varchar(255),
+  id                        bigint auto_increment not null,
+  feature                   text,
+  email                     varchar(255),
   feedback                  varchar(255),
   constraint pk_feedback_info primary key (id))
 ;
 
 create table invitee_user (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   email                     varchar(255),
   constraint pk_invitee_user primary key (id))
 ;
 
 create table life_story (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   constraint pk_life_story primary key (id))
 ;
 
 create table media_item (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   description               varchar(255),
-  date                      timestamp,
+  date                      datetime,
   location                  varchar(255),
   category                  varchar(255),
   filepath                  varchar(255),
@@ -38,9 +39,9 @@ create table media_item (
 ;
 
 create table story_item (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   description               varchar(255),
-  date                      timestamp,
+  date                      datetime,
   location                  varchar(255),
   category                  varchar(255),
   filepath                  varchar(255),
@@ -48,7 +49,7 @@ create table story_item (
 ;
 
 create table story_item_meta_data (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   storyitem_id              bigint,
   name                      varchar(255),
   value                     varchar(255),
@@ -56,9 +57,9 @@ create table story_item_meta_data (
 ;
 
 create table text_item (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   description               varchar(255),
-  date                      timestamp,
+  date                      datetime,
   location                  varchar(255),
   category                  varchar(255),
   filepath                  varchar(255),
@@ -66,76 +67,39 @@ create table text_item (
 ;
 
 create table user (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   username                  varchar(255),
   email                     varchar(255),
   password                  varchar(255),
-  birthdate                 timestamp,
+  birthdate                 datetime,
   constraint pk_user primary key (id))
 ;
 
-create sequence account_seq;
-
-create sequence feedback_info_seq;
-
-create sequence invitee_user_seq;
-
-create sequence life_story_seq;
-
-create sequence media_item_seq;
-
-create sequence story_item_seq;
-
-create sequence story_item_meta_data_seq;
-
-create sequence text_item_seq;
-
-create sequence user_seq;
-
-alter table story_item_meta_data add constraint fk_story_item_meta_data_storyi_1 foreign key (storyitem_id) references story_item (id) on delete restrict on update restrict;
-create index ix_story_item_meta_data_storyi_1 on story_item_meta_data (storyitem_id);
-
+alter table story_item_meta_data add constraint fk_story_item_meta_data_storyitem_1 foreign key (storyitem_id) references story_item (id) on delete restrict on update restrict;
+create index ix_story_item_meta_data_storyitem_1 on story_item_meta_data (storyitem_id);
 
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists account;
+drop table account;
 
-drop table if exists feedback_info;
+drop table feedback_info;
 
-drop table if exists invitee_user;
+drop table invitee_user;
 
-drop table if exists life_story;
+drop table life_story;
 
-drop table if exists media_item;
+drop table media_item;
 
-drop table if exists story_item;
+drop table story_item;
 
-drop table if exists story_item_meta_data;
+drop table story_item_meta_data;
 
-drop table if exists text_item;
+drop table text_item;
 
-drop table if exists user;
+drop table user;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists account_seq;
-
-drop sequence if exists feedback_info_seq;
-
-drop sequence if exists invitee_user_seq;
-
-drop sequence if exists life_story_seq;
-
-drop sequence if exists media_item_seq;
-
-drop sequence if exists story_item_seq;
-
-drop sequence if exists story_item_meta_data_seq;
-
-drop sequence if exists text_item_seq;
-
-drop sequence if exists user_seq;
+SET FOREIGN_KEY_CHECKS=1;
 

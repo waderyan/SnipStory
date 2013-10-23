@@ -12,9 +12,8 @@
           <a class="brand" href="#">SnipStory - Admin</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Invitee Report</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="#invitees">Invite Contacts</a></li>
+              <li><a href="#feedback">Feedback</a></li>
             </ul>
           </div>
         </div>
@@ -22,7 +21,8 @@
     </div>
 
     <div class="spacer"></div>
-	<div class="container">
-		@content
-	</div>
+
+    @content
+
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/admin.css")">
 }
