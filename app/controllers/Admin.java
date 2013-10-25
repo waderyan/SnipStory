@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.mvc.Http.Response;
 import play.data.*;
 import static play.libs.Json.toJson;
 import play.Logger;
@@ -10,6 +11,8 @@ import models.admin.*;
 import views.html.*;
 
 public class Admin extends Controller {
+
+	static final int COOKIE_DURATION = 60 * 60 * 24 * 3;
 
 	public static Result index () {
 		return redirect(routes.Admin.reports());
@@ -27,12 +30,15 @@ public class Admin extends Controller {
 	public static Result addInvitee () {
 		DynamicForm requestData = new DynamicForm().bindFromRequest();
 		InviteeUser.create(requestData.get("name"), requestData.get("email"));
+		
+		response().setCookie("invitee-email", requestData.get("email"), COOKIE_DURATION); 
 		return ok();
 	}
 
 	public static Result addFeedback () {
 		DynamicForm requestData = new DynamicForm().bindFromRequest();
 		FeedbackInfo.create(requestData.get("feature"), requestData.get("email"), requestData.get("details"));
+		response().setCookie("invitee-email", requestData.get("email"), COOKIE_DURATION); 
 		return ok();
 	}
 

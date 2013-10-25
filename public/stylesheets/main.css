@@ -18,7 +18,7 @@
 }
 
 #joined-thankyou a.btn {
-	background: #FBB03B;
+	background: #F26621;
 	text-decoration: none;
 	margin-top: 10px;
 	margin-right: 5px;
@@ -42,7 +42,8 @@
 }
 
 .landing-main {
-	margin: 3%;
+	margin-left: 3%;
+	margin-right: 3%;
 	background: #AFEEEE;
 }
 
@@ -52,7 +53,11 @@
 }
 
 .landing-main button {
-	background: #FBB03B;
+	background: #F26621;
+}
+
+.landing-email {
+	width: 50%;
 }
 
 #invite-form {

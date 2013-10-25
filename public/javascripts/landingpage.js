@@ -6,18 +6,9 @@ $(function () {
 		var namefield = $("#invite-name-field");
 		var form = $("#invite-form");
 
-		function validateEmail (emailCan) {
-			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    		return re.test(emailCan);
-		}
-
-		function validateName (nameCan) {
-			return nameCan != null && nameCan.trim() != "";
-		}
-
-		if ( !validateEmail(emailfield.val()) ) {
+		if ( !FormValidation.validateEmail(emailfield.val()) ) {
 			emailfield.css("border-color","red");
-			if ( !validateName(namefield.val())) {
+			if ( !FormValidation.validateName(namefield.val())) {
 				namefield.css("border-color", "red");
 			}
 			return;
@@ -54,6 +45,38 @@ $(function () {
 		});
 	});
 
+	function FormValidation () {}
+
+	FormValidation.validateEmail = function(emailCan) {
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    		return re.test(emailCan);
+	}
+
+	FormValidation.validateName = function(nameCan) {
+		return nameCan != null && nameCan.trim() != "";
+	}
+
+
+	function CookieHandler () {}
+
+	CookieHandler.decode = function(s) {
+		return decodeURIComponent(s.replace(/\+/g, ' '));
+	}
+
+	CookieHandler.getCookieValue = function (key) {
+		var cookies = document.cookie.split('; ');
+		for (var i = 0, parts; (parts = cookies[i] && cookies[i].split('=')); i++) {
+			if (CookieHandler.decode(parts.shift()) === key) {
+				return CookieHandler.decode(parts.join('=')).replace(/"/g,'');
+			}
+		}
+		return null;
+	}
+
+	CookieHandler.isCookie = function(key) {
+		return document.cookie.indexOf(key) != -1;
+	}
+
 	function LearnMoreInfo (heading, txt, imgsrc, btnPrompt) {
 		var imgFolder = '/assets/images/landing/'
 
@@ -64,83 +87,94 @@ $(function () {
 		this.btnPrompt = btnPrompt;
 	}
 
-	function createLearnMoreRow (info, side) {
+	LearnMoreInfo.thankUser = function(view) {
+		view.empty();
+		view.append(
+			'<h3>Thank you!</h3>' +
+			'<h4>Your feedback is greatly appreciated.</h4>'
+		);
+	}
 
-		function createFeedbackForm (headingId) {
+	LearnMoreInfo.submitFeedback = function(view, formid, email) {
+		if (!email) {
+			email = $('#email-comments' + formid).val();
+		}
+		var comments = $('#commentBox' + formid);
 
-			var formid = headingId;
-			var feedbackDiv = $('<div class="feedback"></div>');
-			// TODO this is temporary - we should be able to track them with cookies.
-			var email = $('<input id="email-comments' + formid + '" type="text" class="input-block-level" placeholder="Email Address">');
-			var commentBox = $('<textarea maxlength="255" rows="3" id="commentBox' + formid + '" placeholder="' + info.btnPrompt + '"></textarea>');
-			var submitBtn = $('<button class="btn btn-success btn-large">Send</button>');
-			submitBtn.click(function() {
-
-				function thankUser () {
-					feedbackDiv.empty();
-					feedbackDiv.append(
-						'<h3>Thank you!</h3>' +
-						'<h4>Your feedback is greatly appreciated.</h4>'
-					);
-				}
-
-				var email = $('#email-comments' + formid);
-				var comments = $('#commentBox' + formid);
-
-				if (email.val() == null || email.val().trim() == "") {
-					email.css("border-color","red");
-					if (comments.val() == null || comments.val().trim() == "") {
-						comments.css("border-color", "red");
-					}
-					return;
-				}
-
-				console.log(headingId);
-
-				$.ajax({
-					url: "http://" + document.location.host + "/admin/addFeedback",
-					type: "POST",
-					data: {
-						email : email.val(),
-						feature: headingId,
-						details: comments.val()
-					},
-					success: function () {
-						thankUser();
-					},
-					error: function (xhr) {
-						console.log("failure!");
-						thankUser();
-					}
-				});
-			});
-
-			feedbackDiv.append(email);
-			feedbackDiv.append(commentBox);
-			feedbackDiv.append(submitBtn);
-
-			return feedbackDiv;
+		if (email == null || email.trim() == "") {
+			$('#email-comments' + formid).css("border-color","red");
+			if (comments.val() == null || comments.val().trim() == "") {
+				comments.css("border-color", "red");
+			}
+			return;
 		}
 
+		$.ajax({
+			// TODO - do this with a relative path
+			url: "http://" + document.location.host + "/admin/addFeedback",
+			type: "POST",
+			data: {
+				email : email,
+				feature: formid,
+				details: comments.val()
+			},
+			success: function () {
+				LearnMoreInfo.thankUser(view);
+			},
+			error: function (xhr) {
+				console.log("failure!");
+				LearnMoreInfo.thankUser(view);
+			}
+		});
+	}
+
+	LearnMoreInfo.createFeedbackForm = function (info, hasEmail) {
+		var view = $('<div class="feedback"></div>');
+
+		// Only add the email if its needed
+		if (!hasEmail) {
+			var email = $('<input id="email-comments' + info.headingId + '" type="text" class="landing-email input-block-level" placeholder="Email Address">');
+			view.append(email);
+		}
+		
+		// create text area
+		view.append($('<textarea maxlength="255" rows="3" id="commentBox' + info.headingId + '" placeholder="' + info.btnPrompt + '"></textarea>'));
+
+		// create submit btn
+		var submitBtn = $('<button class="btn btn-success btn-large">Send</button>');
+		submitBtn.click(function() {
+			LearnMoreInfo.submitFeedback(view, info.headingId, hasEmail ? CookieHandler.getCookieValue('invitee-email') : null);
+		});
+
+		view.append(submitBtn);
+
+		return view;
+	}
+
+	LearnMoreInfo.createLearnMoreRow = function (info, side) {
 		var row = $(document.createElement('div'));
 		row.addClass('row-fluid border');
 
+		// Learn More text
 		var item = $('<div></div>').addClass('span6 padded text-left ' + ((side == 'left') ? 'offset1' : ''));
 		item.append('<h2>' + info.heading + '</h2>');
 		item.append('<p>' + info.txt + '</p>');
 
+		// User Prompt btn
 		var btn = $('<button>' + info.btnPrompt + '</button>');
 		btn.addClass('btn btn-primary btn-large');
 		btn.click(function () {
 			_gaq.push(['_trackEvent', 'btn-' + info.headingId, 'clicked']);
-			$(btn).replaceWith(createFeedbackForm(info.headingId));
+			$(btn).replaceWith(LearnMoreInfo.createFeedbackForm(info, CookieHandler.isCookie('invitee-email')));
 		});
 
 		item.append(btn);
 		
+		// Learn More Image
 		var imgDiv = $('<div><img src="' + info.imgsrc + '"></div>');
 		imgDiv.addClass('span5 padded' + ((side == 'left') ? 'offset1' : ''));
 
+		// Alternate which side were on
 		if (side == 'left') {
 			row.append(item);
 			row.append(imgDiv);
@@ -152,7 +186,7 @@ $(function () {
 		return row;
 	}
 
-	function shuffle(arr) {
+	LearnMoreInfo.shuffle = function(arr) {
 		var currentIndex = arr.length,
 			tempVal,
 			randIndex;
@@ -206,10 +240,10 @@ $(function () {
 	var view = $('#learnMore');
 	view.addClass('landing-main container-fluid');
 
-	info = shuffle(info); 
+	info = LearnMoreInfo.shuffle(info); 
 
 	info.forEach(function (item, index) {
-		view.append(createLearnMoreRow(item, index % 2 == 0 ? 'left' : 'right'));
+		view.append(LearnMoreInfo.createLearnMoreRow(item, index % 2 == 0 ? 'left' : 'right'));
 	});
 });
 
