@@ -1,4 +1,4 @@
-package models;
+package models.admin;
 
 import java.util.*;
 import play.db.ebean.*;
@@ -12,16 +12,19 @@ public class FeedbackInfo extends Model {
 	@Id
 	public Long id;
 
-	// This should be an enum but I don't have time to figure out how that works with the db right now.
 	@Required
-	public String importanceRating;
+	public String feature;
+
+	@Required
+	public String email;
 
 	@Required
 	public String feedback;
 
-	public FeedbackInfo (String rating, String feedbackInfo) {
-		importanceRating = rating;
-		feedback = feedbackInfo;
+	public FeedbackInfo (String feature, String email, String feedbackInfo) {
+		this.feature = feature;
+		this.email = email;
+		this.feedback = feedbackInfo;
 	}
 
 	public static Finder<Long, FeedbackInfo> find = new Finder(Long.class, FeedbackInfo.class);
@@ -30,8 +33,8 @@ public class FeedbackInfo extends Model {
 		return find.all();
 	}
 
-	public static void create (String rating, String feedbackInfo) {
-		new FeedbackInfo(rating, feedbackInfo).save();
+	public static void create (String feature, String email, String feedbackInfo) {
+		new FeedbackInfo(feature, email, feedbackInfo).save();
 	}
 
 	public static void delete (Long id) {

@@ -1,3 +1,4 @@
+
 # --- !Ups
 
 create table account (
@@ -5,6 +6,14 @@ create table account (
   name                      varchar(255),
   password                  varchar(255),
   constraint pk_account primary key (email))
+;
+
+create table feedback_info (
+  id                        bigint auto_increment not null,
+  feature                   text,
+  email                     varchar(255),
+  feedback                  varchar(255),
+  constraint pk_feedback_info primary key (id))
 ;
 
 create table invitee_user (
@@ -70,12 +79,13 @@ alter table story_item_meta_data add constraint fk_story_item_meta_data_storyite
 create index ix_story_item_meta_data_storyitem_1 on story_item_meta_data (storyitem_id);
 
 
-
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
 
 drop table account;
+
+drop table feedback_info;
 
 drop table invitee_user;
 

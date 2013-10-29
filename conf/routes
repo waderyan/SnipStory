@@ -6,7 +6,9 @@ GET     /                           		controllers.Application.index()
 GET	/admin					controllers.Admin.index()
 GET	/admin/reports 				controllers.Admin.reports()
 POST	/admin/addInvitee			controllers.Admin.addInvitee()
+
 GET	/admin/invitees				controllers.Admin.getInvitees()
+
 POST	/admin/addFeedback			controllers.Admin.addFeedback()
 GET 	/dashboard 				controllers.Dashboard.index()
 
