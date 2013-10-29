@@ -28,6 +28,15 @@ public class InviteeUser extends Model {
 	public static List<InviteeUser> all() {
 		return find.all();
 	}
+	
+	public static List<InviteeUser> findPage(int pageNumber) {
+		int pageSize = 10;
+		List<InviteeUser> invitees =
+			find.where()
+			.findPagingList(pageSize)
+			.getPage(1);
+		return invitees;
+	}
 
 	public static void create (String name, String email) {
 		new InviteeUser(name, email).save();

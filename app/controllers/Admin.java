@@ -19,6 +19,7 @@ public class Admin extends Controller {
 		return ok(views.html.reports.render(InviteeUser.all()));
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static Result getInvitees () {
 	    return ok(toJson(InviteeUser.all()));
 	}
