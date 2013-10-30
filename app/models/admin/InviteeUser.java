@@ -31,10 +31,7 @@ public class InviteeUser extends Model {
 	
 	public static List<InviteeUser> findPage(int pageNumber) {
 		int pageSize = 10;
-		List<InviteeUser> invitees =
-			find.where()
-			.findPagingList(pageSize)
-			.getPage(1);
+		List<InviteeUser> invitees = null;
 		return invitees;
 	}
 
