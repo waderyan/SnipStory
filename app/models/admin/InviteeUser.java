@@ -18,6 +18,8 @@ public class InviteeUser extends Model {
 	@Required
 	public String email;
 
+	public String createdat;
+
 	public InviteeUser (String pname, String pemail) {
 		name = pname;
 		email = pemail;
@@ -28,12 +30,28 @@ public class InviteeUser extends Model {
 	public static List<InviteeUser> all() {
 		return find.all();
 	}
-	
-	public static List<InviteeUser> findPage(int pageNumber) {
-		int pageSize = 10;
+
+	public static List<InviteeUser> alphabetize(boolean reverse) {
 		List<InviteeUser> invitees = null;
+		if (reverse)
+			invitees = find.orderBy().desc("name").findList();
+		else
+			invitees = find.orderBy().asc("name").findList();
 		return invitees;
 	}
+
+	public static List<InviteeUser> sortByDate(boolean first) {
+		List<InviteeUser> invitees = null;
+		if (!first)
+			invitees = find.orderBy().desc("createdat").findList();
+		else
+			invitees = find.orderBy().asc("createdat").findList();
+		return invitees;	
+	}
+
+	// public static List<InviteeUser> show() {
+		// return find.findPagingList(2).getPage(1);
+	// }
 
 	public static void create (String name, String email) {
 		new InviteeUser(name, email).save();

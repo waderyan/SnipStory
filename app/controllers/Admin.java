@@ -28,6 +28,26 @@ public class Admin extends Controller {
 	    return ok(toJson(InviteeUser.all()));
 	}
 
+	@Security.Authenticated(Secured.class)
+	public static Result getSortedInviteesByName() {
+		return ok(toJson(InviteeUser.alphabetize(false)));
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result getReverseSortedInviteesByName() {
+		return ok(toJson(InviteeUser.alphabetize(true)));
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result getRecentSortedInviteesByDate() {
+		return ok(toJson(InviteeUser.sortByDate(false)));
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result getFirstSortedInviteesByDate() {
+		return ok(toJson(InviteeUser.sortByDate(true)));
+	}
+
 	public static Result addInvitee () {
 		DynamicForm requestData = new DynamicForm().bindFromRequest();
 		InviteeUser.create(requestData.get("name"), requestData.get("email"));
@@ -47,7 +67,9 @@ public class Admin extends Controller {
 		return ok(toJson(FeedbackInfo.all()));
 	}
 	
-	// Login & Authentication
+	// ***********************************************************
+	// **********    Login & Authentication    *******************
+	// ***********************************************************
 	
 	public static class Login {
 		public String email;
