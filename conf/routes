@@ -17,6 +17,7 @@ GET 	/admin/invitees/sortRecent		controllers.Admin.getRecentSortedInviteesByDate
 GET 	/admin/invitees/sortFirst		controllers.Admin.getFirstSortedInviteesByDate()
 GET 	/admin/invitees/exportCSV		controllers.Admin.exportInvitees()
 POST	/admin/addFeedback				controllers.Admin.addFeedback()
+GET     /admin/feedback                 controllers.Admin.getFeedback()
 
 GET 	/dashboard 					controllers.Dashboard.index()
 
