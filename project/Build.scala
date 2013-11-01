@@ -14,7 +14,8 @@ object ApplicationBuild extends Build {
     javaEbean,
     cache,
     //"org.hibernate" % "hibernate-entitymanager" % "3.6.9.Final",
-    "mysql" % "mysql-connector-java" % "5.1.18"
+    "mysql" % "mysql-connector-java" % "5.1.18",
+    "net.sourceforge.javacsv" % "javacsv" % "2.0"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

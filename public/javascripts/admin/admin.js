@@ -1,8 +1,7 @@
 $(function () {
 
 	$('#refresh-invitees').click(function() {
-		var table = $("#invitee-table");
-		table.empty();
+		var newTable = $("<tbody id='invitee-table'>");
 		var totalInvitees = $("#total-invitees");
 		totalInvitees.empty();
 		var pages = $("#show-pages");
@@ -13,7 +12,7 @@ $(function () {
 				var email = tableItems[i].email;
 				var name = tableItems[i].name;
 				var createdAt = tableItems[i].createdat;
-				table.append(
+				newTable.append(
 					'<tr>' +
 						'<td>' + (i+1) + '</td>' +
 						'<td>' + name + '</td>' +
@@ -23,6 +22,9 @@ $(function () {
 				);
 			}
 			totalInvitees.append("(" + tableItems.length + ")");
+			var oldTable = $("#invitee-table");
+			// ****  Replace at the end to prevent flickering on refresh  *********
+			oldTable.replaceWith(newTable);
 		}
 
 		$.ajax({
@@ -40,12 +42,11 @@ $(function () {
 	});
 
 	$('#refresh-feedback').click(function() {
-		var table = $("#feedback-table");
-		table.empty();
+		var newTable = $("<tbody id='feedback-table'>");
 
 		function populateTable (tableItems) {
 			tableItems.forEach(function (item, i) {
-				table.append(
+				newTable.append(
 					'<tr>' +
 						'<td>' + (i+1) + '</td>' +
 						'<td>' + item.feature + '</td>' +
@@ -54,6 +55,9 @@ $(function () {
 					'</tr>'
 				);
 			});
+			var oldTable = $("#feedback-table");
+			// ****  Replace only at the end to prevent flickering on refresh  *********
+			oldTable.replaceWith(newTable);
 		}
 
 		$.ajax({
@@ -71,15 +75,14 @@ $(function () {
 	});
 
 	$('#sort-a').click(function() {
-		var table = $("#invitee-table");
-		table.empty();
+		var newTable = $("<tbody id='invitee-table'>");
 
 		function populateTable (tableItems) {
 			for (var i = 0; i < tableItems.length; i++) {
 				var email = tableItems[i].email;
 				var name = tableItems[i].name;
 				var createdAt = tableItems[i].createdat;
-				table.append(
+				newTable.append(
 					'<tr>' +
 						'<td>' + (i+1) + '</td>' +
 						'<td>' + name + '</td>' +
@@ -88,6 +91,9 @@ $(function () {
 					'</tr>'
 				);
 			}
+			var oldTable = $("#invitee-table");
+			// ****  Replace at the end to prevent flickering on refresh  *********
+			oldTable.replaceWith(newTable);
 		}
 
 		$.ajax({
@@ -106,15 +112,14 @@ $(function () {
 	});
 
 	$('#sort-z').click(function() {
-		var table = $("#invitee-table");
-		table.empty();
+		var newTable = $("<tbody id='invitee-table'>");
 
 		function populateTable (tableItems) {
 			for (var i = 0; i < tableItems.length; i++) {
 				var email = tableItems[i].email;
 				var name = tableItems[i].name;
 				var createdAt = tableItems[i].createdat;
-				table.append(
+				newTable.append(
 					'<tr>' +
 						'<td>' + (i+1) + '</td>' +
 						'<td>' + name + '</td>' +
@@ -123,6 +128,8 @@ $(function () {
 					'</tr>'
 				);
 			}
+			var oldTable = $("#invitee-table");
+			oldTable.replaceWith(newTable);
 		}
 
 		$.ajax({
@@ -141,15 +148,14 @@ $(function () {
 	});
 
 	$('#sort-recent').click(function() {
-		var table = $("#invitee-table");
-		table.empty();
+		var newTable = $("<tbody id='invitee-table'>");
 
 		function populateTable (tableItems) {
 			for (var i = 0; i < tableItems.length; i++) {
 				var email = tableItems[i].email;
 				var name = tableItems[i].name;
 				var createdAt = tableItems[i].createdat;
-				table.append(
+				newTable.append(
 					'<tr>' +
 						'<td>' + (i+1) + '</td>' +
 						'<td>' + name + '</td>' +
@@ -158,6 +164,8 @@ $(function () {
 					'</tr>'
 				);
 			}
+			var oldTable = $("#invitee-table");
+			oldTable.replaceWith(newTable);
 		}
 
 		$.ajax({
@@ -176,15 +184,14 @@ $(function () {
 	});
 
 	$('#sort-first').click(function() {
-		var table = $("#invitee-table");
-		table.empty();
+		var newTable = $("<tbody id='invitee-table'>");
 
 		function populateTable (tableItems) {
 			for (var i = 0; i < tableItems.length; i++) {
 				var email = tableItems[i].email;
 				var name = tableItems[i].name;
 				var createdAt = tableItems[i].createdat;
-				table.append(
+				newTable.append(
 					'<tr>' +
 						'<td>' + (i+1) + '</td>' +
 						'<td>' + name + '</td>' +
@@ -193,6 +200,8 @@ $(function () {
 					'</tr>'
 				);
 			}
+			var oldTable = $("#invitee-table");
+			oldTable.replaceWith(newTable);
 		}
 
 		$.ajax({
