@@ -2,7 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
-import models.entity.*;
+import models.snipstory.*;
 
 import views.html.*;
 

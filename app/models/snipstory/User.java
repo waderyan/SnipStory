@@ -1,4 +1,4 @@
-package models.entity;
+package models.snipstory;
 
 import java.util.Date;
 import java.util.Calendar;
@@ -31,29 +31,16 @@ public class User extends Model {
 	@Formats.DateTime(pattern="dd/MM/yyyy")
 	public Date birthdate;
 
+	@Required
+	@OneToOne
 	public LifeStory lifestory;
 
-	public User (String usrnme, String eml, String pswd, Date bdate) {
-		if(!isValidParams(username, email, password, birthdate)) {
-			throw new IllegalArgumentException ("invalid arguments for User constructor");
-		}
-
-		username = usrnme;
-		email = eml;
-		password = pswd;
-		birthdate = bdate;
-		lifestory = new LifeStory(this);
-	}
-
-	private static boolean isValidParams (String username, String email, String password, Date birthdate) {
-		return true;
-		// Not working for some reason
-		// return isEmptyOrNull(username, email, password) 
-		// 	&&  isValidBirthdate (birthdate);
-	}
-
-	private static boolean isValidBirthdate (Date birthdate) {
-		return birthdate != null;
+	public User (String username, String email, String password, Date birthdate) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.birthdate = birthdate;
+		this.lifestory = new LifeStory(this);
 	}
 
 	public static User getDummyUser() {
@@ -65,7 +52,7 @@ public class User extends Model {
 	public static Finder<Long, User> find = new Finder(Long.class, User.class);
 
 	public static void create (String name, String email, String psd, Date bdate) {
-		new User(name, email, psd, bdate);
+		new User(name, email, psd, bdate).save();
 	}
 
 	public static void delete (Long id) {

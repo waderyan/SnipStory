@@ -18,9 +18,9 @@ public class InviteeUser extends Model {
 	@Required
 	public String email;
 
-	public InviteeUser (String pname, String pemail) {
-		name = pname;
-		email = pemail;
+	public InviteeUser (String name, String email) {
+		this.name = name;
+		this.email = email;
 	}
 
 	public static Finder<Long, InviteeUser> find = new Finder(Long.class, InviteeUser.class);
