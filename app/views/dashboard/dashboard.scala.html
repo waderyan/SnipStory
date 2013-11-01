@@ -2,26 +2,29 @@
 
 @main("SnipStory") {
 
-	<div class="container-responsive">
+	<link rel="stylesheet" href="@routes.Assets.at("stylesheets/dashboard.css")">
+
+	<div class="dashboard-main container-responsive">
 		<div class="heading">
-			<h3> SnipStory </h3>
+			<img src="/assets/images/landing/SnipLogo_compressed.png">
 		</div>
 
 		@toolbar
-
-		<hr>
-
 		@timeline
-
-		<hr>
-
 		@storyitemsview
 
-		<div class="footer"></div>
+		<div class="footer">
+			<hr>
+			<div class="footer-list"> 
+				<ul>
+					<li>About Us</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 
-	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/dashboard.css")">
-	<script type="text/javascript" src="@routes.Assets.at("javascripts/dashboard/toolbar.js")"></script>
-	<script type="text/javascript" src="@routes.Assets.at("javascripts/dashboard/timeline.js")"></script>
-	<script type="text/javascript" src="@routes.Assets.at("javascripts/dashboard/storyitemsview.js")"></script>
+	
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/snipstory/toolbar.js")"></script>
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/snipstory/timeline.js")"></script>
+	<script type="text/javascript" src="@routes.Assets.at("javascripts/snipstory/storyitemsview.js")"></script>
 }
