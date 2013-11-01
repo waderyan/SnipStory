@@ -1,14 +1,17 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-import play.mvc.Http.Response;
-import play.data.*;
 import static play.libs.Json.toJson;
-import play.Logger;
 
-import models.admin.*;
-import views.html.*;
+import java.io.InputStream;
+
+import models.admin.AdminUser;
+import models.admin.FeedbackInfo;
+import models.admin.InviteeUser;
+import play.data.DynamicForm;
+import play.data.Form;
+import play.mvc.Controller;
+import play.mvc.Result;
+import play.mvc.Security;
 
 public class Admin extends Controller {
 
@@ -23,14 +26,42 @@ public class Admin extends Controller {
 		return ok(views.html.admin.reports.render());
 	}
 
+	@Security.Authenticated(Secured.class)
 	public static Result getInvitees () {
 	    return ok(toJson(InviteeUser.all()));
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result getSortedInviteesByName() {
+		return ok(toJson(InviteeUser.alphabetize(false)));
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result getReverseSortedInviteesByName() {
+		return ok(toJson(InviteeUser.alphabetize(true)));
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result getRecentSortedInviteesByDate() {
+		return ok(toJson(InviteeUser.sortByDate(false)));
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result getFirstSortedInviteesByDate() {
+		return ok(toJson(InviteeUser.sortByDate(true)));
+	}
+
+	@Security.Authenticated(Secured.class)
+	public static Result exportInvitees() {
+		InputStream is = InviteeUser.getDynamicStream();
+//		response().setContentType("application/x-download");  
+		response().setHeader("Content-disposition","attachment; filename=snipstory-invitees.csv");
+		return ok(is);
 	}
 
 	public static Result addInvitee () {
 		DynamicForm requestData = new DynamicForm().bindFromRequest();
 		InviteeUser.create(requestData.get("name"), requestData.get("email"));
-		
 		response().setCookie("invitee-email", requestData.get("email"), COOKIE_DURATION); 
 		return ok();
 	}
@@ -46,7 +77,9 @@ public class Admin extends Controller {
 		return ok(toJson(FeedbackInfo.all()));
 	}
 	
-	// Login & Authentication
+	// ***********************************************************
+	// **********    Login & Authentication    *******************
+	// ***********************************************************
 	
 	public static class Login {
 		public String email;

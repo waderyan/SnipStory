@@ -2,18 +2,27 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                           controllers.Application.index()
+GET     /                   		controllers.Application.index()
 GET		/admin						controllers.Admin.index()
 GET		/admin/reports 				controllers.Admin.reports()
 POST	/admin/addInvitee			controllers.Admin.addInvitee()
-GET		/admin/invitees				controllers.Admin.getInvitees()
-GET 	/admin/feedback   			controllers.Admin.getFeedback()
-POST	/admin/addFeedback			controllers.Admin.addFeedback()
+
+# --------------------------
+# -----   Admin  -----------
+# --------------------------
+GET		/admin/invitees					controllers.Admin.getInvitees()
+GET		/admin/invitees/sortNameA		controllers.Admin.getSortedInviteesByName()
+GET 	/admin/invitees/sortNameZ		controllers.Admin.getReverseSortedInviteesByName()
+GET 	/admin/invitees/sortRecent		controllers.Admin.getRecentSortedInviteesByDate()
+GET 	/admin/invitees/sortFirst		controllers.Admin.getFirstSortedInviteesByDate()
+GET 	/admin/invitees/exportCSV		controllers.Admin.exportInvitees()
+POST	/admin/addFeedback				controllers.Admin.addFeedback()
+
 GET 	/dashboard 					controllers.Dashboard.index()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
-GET     /login                  controllers.Admin.login()
-
-POST	/login			controllers.Admin.authenticate()
+# Login for Admin pages
+GET     /login                  	controllers.Admin.login()
+POST	/login						controllers.Admin.authenticate()
