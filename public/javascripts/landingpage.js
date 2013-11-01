@@ -45,6 +45,14 @@ $(function () {
 		});
 	});
 
+	$('#survey').click(function () {
+		_gaq.push(['_trackEvent', 'survey-btn', 'clicked']);
+	});
+
+	$('#googleplus').click(function () {
+		_gaq.push(['_trackEvent', 'googleplus-btn', 'clicked']);
+	});
+
 	function FormValidation () {}
 
 	FormValidation.validateEmail = function(emailCan) {
@@ -55,7 +63,6 @@ $(function () {
 	FormValidation.validateName = function(nameCan) {
 		return nameCan != null && nameCan.trim() != "";
 	}
-
 
 	function CookieHandler () {}
 

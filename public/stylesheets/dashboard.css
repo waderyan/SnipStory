@@ -1,12 +1,36 @@
-
-.heading {
-	margin: 1%;
+.dashboard-main {
+	margin-left: 3%;
+	margin-right: 3%;
+	background: #AFEEEE;
+	border-radius: 3px;
+	padding: 2%;
 }
 
-
 .toolbox {
-	margin: 4%;
+	border-bottom: 2px solid black;
+}
+
+.tools li {
+	list-style-type: none;
 	display: inline;
+	margin: 5px;
+}
+
+.profile li {
+	list-style-type: none;
+}
+
+.timeline {
+	border-bottom: 2px solid black;
+}
+
+.storyitemsview {
+	border-bottom: 2px solid black;
+}
+
+.heading {
+	width: 350px;
+	height: 150px;
 }
 
 .timelineItem {
