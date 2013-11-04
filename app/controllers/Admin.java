@@ -33,7 +33,7 @@ public class Admin extends Controller {
 
 	@Security.Authenticated(Secured.class)
 	public static Result exportInvitees() {
-		InputStream is = InviteeUser.getDynamicStream();
+		InputStream is = InviteeUser.getDynamicStreamForCSV();
 		response().setHeader("Content-disposition","attachment; filename=snipstory-invitees.csv");
 		return ok(is);
 	}
