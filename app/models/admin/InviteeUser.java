@@ -1,5 +1,6 @@
 package models.admin;
 
+import java.text.DateFormat;
 import java.util.*;
 import java.io.*;
 import java.nio.charset.Charset;
@@ -24,14 +25,14 @@ public class InviteeUser extends Model {
 	@Required
 	public String email;
 
+	public String createdat;
+
 	public InviteeUser (String name, String email) {
 		this.name = name;
 		this.email = email;
-
+		DateFormat dateFormatter = DateFormat.getDateInstance(DateFormat.FULL);
+		createdat = dateFormatter.format(new Date());
 	}
-
-	public String createdat;
-
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Finder<Long, InviteeUser> find = new Finder(Long.class, InviteeUser.class);
