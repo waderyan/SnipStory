@@ -13,8 +13,8 @@ public class StoryItem extends Model {
 	@Id
 	public Long id;
 
-	// @ManyToOne for some reasons this is breaking the build
-	public LifeStoryEvent event;
+	@ManyToOne
+	public StoryEvent event;
 
 	@Required
 	public String description;
@@ -32,7 +32,7 @@ public class StoryItem extends Model {
 	public String filepath;
 
 	
-	public StoryItem (LifeStoryEvent event, String description, Date date, String loc, String category, String filepath) {
+	public StoryItem (StoryEvent event, String description, Date date, String loc, String category, String filepath) {
 		this.event = event;
 		this.description = description;
 		this.date = date;
