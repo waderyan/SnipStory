@@ -11,11 +11,18 @@ public class StoryItem extends Model {
 
 	private static final long serialVersionUID = 1L;
 
+	public enum StoryItemType {
+		Text,
+		Audio,
+		Video,
+		Image
+	}
+	
 	@Id
 	public Long id;
 
 	@ManyToOne
-	public StoryPage event;
+	public StoryPage page;
 
 	@Required
 	public String description;
@@ -28,18 +35,33 @@ public class StoryItem extends Model {
 
 	@Required
 	public String category;
-
-	@Required
-	public String filepath;
-
 	
-	public StoryItem (StoryPage event, String description, Date date, String loc, String category, String filepath) {
-		this.event = event;
+	@Required
+	public String type;
+
+	public StoryItem (StoryPage page, String description, Date date, String loc, String category, StoryItemType type) {
+		this.page = page;
 		this.description = description;
 		this.date = date;
 		this.location = loc;
 		this.category = category;
-		this.filepath = filepath;
+		this.type = type.name();
+	}
+	
+	// DB Operations
+	
+	public static Finder<Long, StoryItem> find = new Finder<Long, StoryItem>(Long.class, StoryItem.class);
+
+	public static void create (StoryPage page, String description, Date date, String loc, String category, StoryItemType type) {
+		new StoryItem(page, description, date, loc, category, type).save();
+	}
+
+	public static void delete (Long id) {
+		find.ref(id).delete();
+	}
+
+	public static StoryItem find(Long id) {
+		return find.ref(id);
 	}
 
 }

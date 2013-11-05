@@ -19,7 +19,34 @@ GET 	/admin/invitees/exportCSV		controllers.Admin.exportInvitees()
 POST	/admin/addFeedback				controllers.Admin.addFeedback()
 GET     /admin/feedback                 controllers.Admin.getFeedback()
 
+# --------------------------
+# ----- Dashboard ----------
+# --------------------------
+
 GET 	/dashboard 					    controllers.snipstory.Dashboard.index()
+
+# User ops
+GET     /dashboard/user/:id             controllers.snipstory.UserController.getUser(id: Long)
+POST    /dashboard/user                 controllers.snipstory.UserController.addUser()
+PUT     /dashboard/user/:id            controllers.snipstory.UserController.updateUser(id: Long)
+
+# Lifestory ops
+# GET     /dashboard/lifestory/:id       controllers.snipstory.LifeStoryController.getLifeStory(id: Long)
+
+# Chapter ops
+# GET     /dashboard/chapter/:id         controllers.snipstory.StoryChapterController.getChapter(id: Long)
+# PUT     /dashboard/chapter/:id         controllers.snipstory.StoryChapterController.updateChapter(id: Long)
+
+# Page ops
+# GET     /dashboard/page/:id            controllers.snipstory.StoryPageController.getPage(id: Long)
+# POST    /dashboard/page                controllers.snipstory.StoryPageController.addPage()
+# PUT     /dashbaord/page/:id            controllers.snipstory.StoryPageController.updatePage(id: Long)
+
+# Item ops
+# GET     /dashboard/item/:id            controllers.snipstory.StoryItemController.getItem(id: Long)
+# POST    /dashboard/item                controllers.snipstory.StoryItemController.addItem()
+# PUT     /dashboard/item/:id            controllers.snipstory.StoryItemController.updateItem(id: Long)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
