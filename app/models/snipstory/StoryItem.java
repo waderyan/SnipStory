@@ -1,10 +1,8 @@
 package models.snipstory;
 
-import common.util.StringUtils;
 import java.util.Date;
 import play.db.ebean.*;
 import play.data.validation.Constraints.*;
-import play.data.format.*;
 import play.data.validation.*;
 
 import javax.persistence.*;
@@ -16,13 +14,12 @@ public class StoryItem extends Model {
 	public Long id;
 
 	@ManyToOne
-	public LifeStoryEvent event;
+	public StoryEvent event;
 
 	@Required
 	public String description;
 
 	@Required
-	@Formats.DateTime(pattern="dd/MM/yyyy")
 	public Date date;
 
 	@Required
@@ -35,7 +32,7 @@ public class StoryItem extends Model {
 	public String filepath;
 
 	
-	public StoryItem (LifeStoryEvent event, String description, Date date, String loc, String category, String filepath) {
+	public StoryItem (StoryEvent event, String description, Date date, String loc, String category, String filepath) {
 		this.event = event;
 		this.description = description;
 		this.date = date;

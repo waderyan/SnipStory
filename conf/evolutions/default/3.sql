@@ -1,4 +1,4 @@
 # --- !Ups
-alter table invitee_user
-	ADD COLUMN createdat TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE invitee_user ADD COLUMN createdat varchar(100) NOT NULL;
+
 # --- !Downs

@@ -13,10 +13,6 @@ POST	/admin/addInvitee			controllers.Admin.addInvitee()
 # -----   Admin  -----------
 # --------------------------
 GET		/admin/invitees					controllers.Admin.getInvitees()
-GET		/admin/invitees/sortNameA		controllers.Admin.getSortedInviteesByName()
-GET 	/admin/invitees/sortNameZ		controllers.Admin.getReverseSortedInviteesByName()
-GET 	/admin/invitees/sortRecent		controllers.Admin.getRecentSortedInviteesByDate()
-GET 	/admin/invitees/sortFirst		controllers.Admin.getFirstSortedInviteesByDate()
 GET 	/admin/invitees/exportCSV		controllers.Admin.exportInvitees()
 POST	/admin/addFeedback				controllers.Admin.addFeedback()
 GET     /admin/feedback                 controllers.Admin.getFeedback()

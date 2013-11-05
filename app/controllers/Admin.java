@@ -32,29 +32,8 @@ public class Admin extends Controller {
 	}
 
 	@Security.Authenticated(Secured.class)
-	public static Result getSortedInviteesByName() {
-		return ok(toJson(InviteeUser.alphabetize(false)));
-	}
-
-	@Security.Authenticated(Secured.class)
-	public static Result getReverseSortedInviteesByName() {
-		return ok(toJson(InviteeUser.alphabetize(true)));
-	}
-
-	@Security.Authenticated(Secured.class)
-	public static Result getRecentSortedInviteesByDate() {
-		return ok(toJson(InviteeUser.sortByDate(false)));
-	}
-
-	@Security.Authenticated(Secured.class)
-	public static Result getFirstSortedInviteesByDate() {
-		return ok(toJson(InviteeUser.sortByDate(true)));
-	}
-
-	@Security.Authenticated(Secured.class)
 	public static Result exportInvitees() {
-		InputStream is = InviteeUser.getDynamicStream();
-//		response().setContentType("application/x-download");  
+		InputStream is = InviteeUser.getDynamicStreamForCSV();
 		response().setHeader("Content-disposition","attachment; filename=snipstory-invitees.csv");
 		return ok(is);
 	}

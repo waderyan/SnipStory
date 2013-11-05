@@ -1,5 +1,6 @@
 package models.admin;
 
+import java.text.DateFormat;
 import java.util.*;
 import java.io.*;
 import java.nio.charset.Charset;
@@ -24,14 +25,14 @@ public class InviteeUser extends Model {
 	@Required
 	public String email;
 
+	public String createdat;
+
 	public InviteeUser (String name, String email) {
 		this.name = name;
 		this.email = email;
-
+		DateFormat dateFormatter = DateFormat.getDateInstance(DateFormat.FULL);
+		createdat = dateFormatter.format(new Date());
 	}
-
-	public String createdat;
-
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Finder<Long, InviteeUser> find = new Finder(Long.class, InviteeUser.class);
@@ -40,25 +41,7 @@ public class InviteeUser extends Model {
 		return find.all();
 	}
 
-	public static List<InviteeUser> alphabetize(boolean reverse) {
-		List<InviteeUser> invitees = null;
-		if (reverse)
-			invitees = find.orderBy().desc("name").findList();
-		else
-			invitees = find.orderBy().asc("name").findList();
-		return invitees;
-	}
-
-	public static List<InviteeUser> sortByDate(boolean first) {
-		List<InviteeUser> invitees = null;
-		if (!first)
-			invitees = find.orderBy().desc("createdat").findList();
-		else
-			invitees = find.orderBy().asc("createdat").findList();
-		return invitees;	
-	}
-
-	public static ByteArrayInputStream getDynamicStream() {
+	public static ByteArrayInputStream getDynamicStreamForCSV() {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		CsvWriter csv = new CsvWriter(stream, ',', Charset.forName("UTF8"));
 		try {

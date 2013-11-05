@@ -1,7 +1,7 @@
 package models.snipstory;
 
-
 import play.db.ebean.*;
+
 
 import javax.persistence.*;
 

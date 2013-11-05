@@ -11,14 +11,14 @@ create table user (
 ;
 
 create table life_story (
-  id                        bigint auto_increment not null,
+  id                bigint auto_increment not null,
   user_id  					bigint,
   constraint pk_life_story primary key (id),
   constraint fk_user foreign key (user_id) references user
 );
 
-create table life_story_event (
-  id  						bigint auto_increment not null,
+create table story_event (
+  id  						    bigint auto_increment not null,
   life_story_id  			bigint,
   constraint pk_life_story_event primary key (id),
   constraint fk_life_story foreign key (life_story_id) references life_story)
@@ -50,6 +50,8 @@ create table story_item_meta_data (
 drop table user;
 
 drop table life_story;
+
+drop table story_event;
 
 drop table story_item;
 

@@ -8,7 +8,7 @@ import play.data.validation.Constraints.*;
 import javax.persistence.*;
 
 @Entity
-public class LifeStoryEvent extends Model {
+public class StoryChapter extends Model {
 
 	@Id
 	public Long id;
@@ -16,7 +16,7 @@ public class LifeStoryEvent extends Model {
 	@ManyToOne
 	public LifeStory lifestory;
 
-	public LifeStoryEvent(LifeStory lifestory) {
+	public StoryChapter(LifeStory lifestory) {
 		this.lifestory = lifestory;
 	}
 
