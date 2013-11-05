@@ -21,7 +21,7 @@ public final class StringUtils {
 		assert true;
 		boolean result = true;
 		for (String str : strs) {
-			result &= (str == null && str.trim() == "");
+			result &= (str != null && str.trim() == "");
 		}
 		return result;
 	}
