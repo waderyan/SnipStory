@@ -1,10 +1,8 @@
 package models.snipstory;
 
-import common.util.StringUtils;
 import java.util.Date;
 import play.db.ebean.*;
 import play.data.validation.Constraints.*;
-import play.data.format.*;
 import play.data.validation.*;
 
 import javax.persistence.*;
@@ -15,14 +13,13 @@ public class StoryItem extends Model {
 	@Id
 	public Long id;
 
-	@ManyToOne
+	// @ManyToOne for some reasons this is breaking the build
 	public LifeStoryEvent event;
 
 	@Required
 	public String description;
 
 	@Required
-	@Formats.DateTime(pattern="dd/MM/yyyy")
 	public Date date;
 
 	@Required

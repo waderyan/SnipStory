@@ -1,4 +1,4 @@
-package controllers;
+package controllers.snipstory;
 
 import play.*;
 import play.mvc.*;
