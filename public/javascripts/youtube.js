@@ -24,10 +24,10 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
 	if (event.data ==YT.PlayerState.PLAYING) {
-		_gaq.push(['_trackEvent', 'Videos', 'Play', player.getVideoUrl() ]); 
+		_gaq.push(['_trackEvent', 'Video-Start', 'Play', player.getVideoUrl() ]); 
 	} 
 	if (event.data ==YT.PlayerState.ENDED) {
-		_gaq.push(['_trackEvent', 'Videos', 'Watch to End', player.getVideoUrl() ]); 
+		_gaq.push(['_trackEvent', 'Video-End', 'Watch to End', player.getVideoUrl() ]); 
 	}  
 }
 
