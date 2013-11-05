@@ -1,3 +1,6 @@
+# Log into aws
+# Make sure you have snipstory.pem 
+ssh -i -v snipstory.pem ubuntu@ec2-54-200-212-168.us-west-2.compute.amazonaws.com
 
 
 # back up database
@@ -12,11 +15,9 @@ function backupDB {
 backupDB invitees
 backupDB snipstory
 
-
 # pull in new code
 git pull origin master
-
-# enter in git credentials
+# may need to enter in git credentials
 
 function restartSnipStory {
 	cd $HOME/SnipStory 
@@ -27,3 +28,5 @@ function restartSnipStory {
 	echo "Restarting play"
 	sudo play "start 80"
 }
+
+restartSnipStory
