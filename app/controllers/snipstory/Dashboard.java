@@ -1,16 +1,10 @@
-package controllers;
+package controllers.snipstory;
 
-import play.*;
 import play.mvc.*;
-import models.snipstory.*;
-
-import views.html.*;
 
 public class Dashboard extends Controller {
 
     public static Result index() {
-        User user = User.getDummyUser();
-        // We still need to figure out how the state will be mantained. 
 
         return ok(
         	views.html.dashboard.dashboard.render(

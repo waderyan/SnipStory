@@ -1,8 +1,5 @@
 package models.snipstory;
 
-import common.util.StringUtils;
-import java.util.Date;
-
 import play.db.ebean.*;
 import play.data.validation.Constraints.*;
 
@@ -10,6 +7,8 @@ import javax.persistence.*;
 
 @Entity
 public class StoryItemMetaData extends Model {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	public Long id;

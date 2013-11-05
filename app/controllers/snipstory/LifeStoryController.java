@@ -1,9 +1,6 @@
 package controllers.snipstory;
 
-import play.*;
-import play.mvc.*;
-
-import views.html.*;
+import play.mvc.Controller;
 
 public class LifeStoryController extends Controller {
 

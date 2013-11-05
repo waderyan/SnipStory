@@ -1,14 +1,13 @@
 package models.snipstory;
 
-import java.util.*;
-
 import play.db.ebean.*;
-import play.data.validation.Constraints.*;
 
 import javax.persistence.*;
 
 @Entity
-public class StoryEvent extends Model {
+public class StoryPage extends Model {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	public Long id;
@@ -16,7 +15,7 @@ public class StoryEvent extends Model {
 	@ManyToOne
 	public LifeStory lifestory;
 
-	public StoryEvent(LifeStory lifestory) {
+	public StoryPage(LifeStory lifestory) {
 		this.lifestory = lifestory;
 	}
 

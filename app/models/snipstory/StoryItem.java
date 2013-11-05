@@ -3,18 +3,19 @@ package models.snipstory;
 import java.util.Date;
 import play.db.ebean.*;
 import play.data.validation.Constraints.*;
-import play.data.validation.*;
 
 import javax.persistence.*;
 
 @Entity
 public class StoryItem extends Model {
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	public Long id;
 
 	@ManyToOne
-	public StoryEvent event;
+	public StoryPage event;
 
 	@Required
 	public String description;
@@ -32,7 +33,7 @@ public class StoryItem extends Model {
 	public String filepath;
 
 	
-	public StoryItem (StoryEvent event, String description, Date date, String loc, String category, String filepath) {
+	public StoryItem (StoryPage event, String description, Date date, String loc, String category, String filepath) {
 		this.event = event;
 		this.description = description;
 		this.date = date;

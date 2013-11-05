@@ -1,16 +1,13 @@
 package models.snipstory;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
-
 import play.db.ebean.*;
-import play.data.validation.Constraints.*;
 
 import javax.persistence.*;
 
 @Entity
 public class LifeStory extends Model {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	public Long id;

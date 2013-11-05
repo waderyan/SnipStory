@@ -1,18 +1,17 @@
 package models.snipstory;
 
 import java.util.Date;
-import java.util.Calendar;
-import common.util.StringUtils;
 
 import play.db.ebean.*;
 import play.data.validation.Constraints.*;
 import play.data.format.*;
-import play.data.validation.*;
 
 import javax.persistence.*;
 
 @Entity
 public class User extends Model {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	public Long id;
@@ -49,7 +48,7 @@ public class User extends Model {
 
 	// DB Operations
 	
-	public static Finder<Long, User> find = new Finder(Long.class, User.class);
+	public static Finder<Long, User> find = new Finder<Long, User>(Long.class, User.class);
 
 	public static void create (String name, String email, String psd, Date bdate) {
 		new User(name, email, psd, bdate).save();

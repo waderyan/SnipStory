@@ -1,14 +1,12 @@
 package models.snipstory;
 
-import java.util.*;
-
 import play.db.ebean.*;
-import play.data.validation.Constraints.*;
-
 import javax.persistence.*;
 
 @Entity
 public class StoryChapter extends Model {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	public Long id;

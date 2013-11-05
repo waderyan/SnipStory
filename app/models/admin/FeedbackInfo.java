@@ -9,6 +9,8 @@ import javax.persistence.*;
 @Entity
 public class FeedbackInfo extends Model {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	public Long id;
 
@@ -27,7 +29,7 @@ public class FeedbackInfo extends Model {
 		this.feedback = feedbackInfo;
 	}
 
-	public static Finder<Long, FeedbackInfo> find = new Finder(Long.class, FeedbackInfo.class);
+	public static Finder<Long, FeedbackInfo> find = new Finder<Long, FeedbackInfo>(Long.class, FeedbackInfo.class);
 
 	public static List<FeedbackInfo> all() {
 		return find.all();
