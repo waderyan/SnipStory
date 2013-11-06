@@ -245,7 +245,6 @@ $(function () {
 	];
 
 	var view = $('#learnMore');
-	view.addClass('landing-main container-fluid');
 
 	info = LearnMoreInfo.shuffle(info); 
 
