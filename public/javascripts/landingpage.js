@@ -46,11 +46,11 @@ $(function () {
 	});
 
 	$('#survey').click(function () {
-		_gaq.push(['_trackEvent', 'survey-btn', 'clicked']);
+		_gaq.push(['_trackEvent', 'survey-btn' + '-' + document.location.pathname, 'clicked']);
 	});
 
 	$('#googleplus').click(function () {
-		_gaq.push(['_trackEvent', 'googleplus-btn', 'clicked']);
+		_gaq.push(['_trackEvent', 'facebook-btn' + '-' + document.location.pathname, 'clicked']);
 	});
 
 	function FormValidation () {}
@@ -171,7 +171,7 @@ $(function () {
 		var btn = $('<button>' + info.btnPrompt + '</button>');
 		btn.addClass('btn btn-primary btn-large');
 		btn.click(function () {
-			_gaq.push(['_trackEvent', 'btn-' + info.headingId, 'clicked']);
+			_gaq.push(['_trackEvent', 'btn-' + info.headingId + '-' + document.location.pathname, 'clicked']);
 			$(btn).replaceWith(LearnMoreInfo.createFeedbackForm(info, CookieHandler.isCookie('invitee-email')));
 		});
 
