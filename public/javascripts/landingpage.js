@@ -18,14 +18,15 @@ $(function () {
 			form.empty();
 			form.append(
 				'<h2 class="form-signup-heading">Thank you!</h2>' +
-				'<div id="joined-thankyou">' + 
+				'<div id="joined-thankyou">' +
 					'<h4>We\'ll be contacting you soon. Contact us at <a href="mailto:snipstory@gmail.com">snipstory@gmail.com</a></h4>' +
-					'<div>' + 
-						'<a class="pull-left btn btn-large btn-primary" href="#learnMore">Learn More Below.</a>' + 
-						//'<button id="pull-right share-btn" class="btn btn-large btn-primary">Share.</button>' + 
+					'<div>' +
+						'<a class="pull-left btn btn-large btn-primary" href="#learnMore">Learn More Below.</a>' +
+						'<button id="share-btn" class="btn btn-large btn-primary">Share!</button>' +
 					'</div>' +
 				'</div>'
 			);
+			$('#share-btn').click(Share.show);
 		}
 
 		$.ajax({
@@ -41,7 +42,6 @@ $(function () {
 			error: function (xhr) {
 				thankUser();
 			}
-
 		});
 	});
 
@@ -82,6 +82,84 @@ $(function () {
 
 	CookieHandler.isCookie = function(key) {
 		return document.cookie.indexOf(key) != -1;
+	}
+
+	function Share () {}
+
+	Share.create = function() {
+		$('#share-modal').empty();
+		$('#share-modal').append(
+		    '<div class="modal-header">'+
+		    	'<h3 id="share-modal-head">Share with your friends!</h3>'+
+		    '</div>'+
+		    '<div id="share-modal-body" class="modal-body">'+
+		    	'<form id="share-modal-form"></form>'+
+		    '</div>'+
+		    '<div class="modal-footer">'+
+		    	'<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Cancel</button>'+
+		    	'<button id=send-emails class="btn btn-primary">Send emails</button>'+
+		    '</div>'
+	    );
+	    $('#send-emails').click(Share.sendEmails);
+	}
+
+	Share.show = function() {
+		if (!($(".share-email").length))
+			Share.create();
+
+		$('#share-modal').modal({ backdrop: 'static', keyboard: true });
+		var numCreated = $('#share-modal-form').find('input').length;
+		if (numCreated < 5)
+			Share.appendField(5-numCreated);
+	}
+
+	Share.appendField = function(num) {
+		for (var i = 0; i < num; i++) {
+			$('#share-modal-form').append('<input class=share-email type=text placeholder=\'Email\'><br>');
+		}
+		$('.share-email').focus(Share.checkEmails);
+	}
+
+	Share.checkEmails = function(target) {
+		var numEmpty = $('#share-modal-form').find('input').filter(function () { return this.value == ""; }).length;
+		if (numEmpty <= 1 && this.value == "")
+			Share.appendField(1);
+	}
+
+	Share.sendEmails = function() {
+		var valid = true;
+		var validEmails = [];
+		$('#share-modal-form').find('input').filter(function () { return this.value != ""; }).each(function () {
+			var emailAddress = this.value;
+
+			if (!FormValidation.validateEmail(emailAddress) ) {
+				$(this).css("border-color","red");
+				valid = false;
+			}
+			validEmails.push(emailAddress);
+		});
+
+		if (valid) {
+			for (var i = 0; i < validEmails.length; i++) {
+				$.ajax({
+					type: "POST",
+					url: "http://" + document.location.host + "/admin/addInvitee",
+					data: {
+						name: "from:" + CookieHandler.getCookieValue('invitee-email'),
+						email: validEmails[i]
+					},
+					success: function () {
+						console.log("success");
+					},
+					error: function (xhr) {
+						console.log("oops");
+					}
+				});
+			}
+
+			$('#share-modal').modal("hide");
+			$('#share-modal').empty();
+		}
 	}
 
 	function LearnMoreInfo (heading, txt, imgsrc, btnPrompt) {
