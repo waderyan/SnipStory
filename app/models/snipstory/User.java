@@ -50,8 +50,10 @@ public class User extends Model {
 	
 	public static Finder<Long, User> find = new Finder<Long, User>(Long.class, User.class);
 
-	public static void create (String name, String email, String psd, Date bdate) {
-		new User(name, email, psd, bdate).save();
+	public static User create (String name, String email, String psd, Date bdate) {
+		User u = new User(name, email, psd, bdate);
+		u.save();
+		return u;
 	}
 
 	public static void delete (Long id) {

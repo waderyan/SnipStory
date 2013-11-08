@@ -12,7 +12,7 @@ create table user (
 
 create table life_story (
   id                bigint auto_increment not null,
-  user_id  					bigint,
+  user_id           bigint,
   constraint pk_life_story primary key (id),
   constraint fk_user foreign key (user_id) references user
 );
@@ -52,7 +52,7 @@ create table story_chapter (
   startyear                 int,
   endyear                   int,
   constraint pk_story_chapter primary key (id),
-  constraint fk_life_story foreign key (life_story_id) references life_story)
+  constraint fk_life_story foreign key (life_story_id) references life_story
 );
 
 # --- !Downs
