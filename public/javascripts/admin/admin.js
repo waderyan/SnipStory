@@ -5,19 +5,16 @@ $(function () {
 		table.empty();
 
 		function populateTable (tableItems) {
-			for (var i = 0; i < tableItems.length; i++) {
-				var email = tableItems[i].email;
-				var name = tableItems[i].name;
-				var createdAt = tableItems[i].createdat;
+			tableItems.forEach(function (item) {
 				table.append(
 					'<tr>' +
-						'<td>' + (i+1) + '</td>' +
-						'<td>' + name + '</td>' +
-						'<td><a href="mailto:'+ email + '">' + email + '</a></td>' +
-						'<td>' + createdAt + '</td>' +
+						'<td>' + item.name + '</td>' +
+						'<td><a href="mailto:'+ item.email + '">' + item.email + '</a></td>' +
+						'<td>' + item.landing_site + '</td>' +
+						'<td>' + item.createdat + '</td>' +
 					'</tr>'
 				);
-			}
+			});
 		}
 
 		$.ajax({
@@ -44,9 +41,9 @@ $(function () {
 			tableItems.forEach(function (item, i) {
 				table.append(
 					'<tr>' +
-						'<td>' + (i+1) + '</td>' +
 						'<td>' + item.feature + '</td>' +
 						'<td><a href="mailto:'+ item.email + '">' + item.email + '</a></td>' +
+						'<td>' + item.landing_site + '</td>' +
 						'<td>' + item.feedback + '</td>' +
 					'</tr>'
 				);

@@ -33,7 +33,8 @@ $(function () {
 			url: "http://" + document.location.host + "/admin/addInvitee",
 			data: {
 				name: namefield.val(),
-				email: emailfield.val()
+				email: emailfield.val(),
+				landingSite: document.location.pathname + ''
 			},
 			success: function () {
 				thankUser();
@@ -123,7 +124,8 @@ $(function () {
 			data: {
 				email : email,
 				feature: formid,
-				details: comments.val()
+				details: comments.val(),
+				landingSite: document.location.pathname
 			},
 			success: function () {
 				LearnMoreInfo.thankUser(view);

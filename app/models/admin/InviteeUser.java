@@ -5,6 +5,7 @@ import java.util.*;
 import java.io.*;
 import java.nio.charset.Charset;
 
+import play.Logger;
 import play.db.ebean.*;
 import play.data.validation.Constraints.*;
 
@@ -24,14 +25,18 @@ public class InviteeUser extends Model {
 
 	@Required
 	public String email;
+	
+	public String landing_site;
 
 	public String createdat;
 
-	public InviteeUser (String name, String email) {
+	public InviteeUser (String name, String email, String landingSite) {
 		this.name = name;
 		this.email = email;
+		this.landing_site = landingSite;
 		DateFormat dateFormatter = DateFormat.getDateInstance(DateFormat.FULL);
 		createdat = dateFormatter.format(new Date());
+		Logger.info(createdat);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -66,8 +71,8 @@ public class InviteeUser extends Model {
 		return new ByteArrayInputStream(stream.toByteArray());
 	}
 
-	public static void create (String name, String email) {
-		new InviteeUser(name, email).save();
+	public static void create (String name, String email, String landingSite) {
+		new InviteeUser(name, email, landingSite).save();
 	}
 
 	public static void delete (Long id) {

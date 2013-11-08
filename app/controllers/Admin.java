@@ -40,14 +40,14 @@ public class Admin extends Controller {
 
 	public static Result addInvitee () {
 		DynamicForm requestData = new DynamicForm().bindFromRequest();
-		InviteeUser.create(requestData.get("name"), requestData.get("email"));
+		InviteeUser.create(requestData.get("name"), requestData.get("email"), requestData.get("landingSite"));
 		response().setCookie("invitee-email", requestData.get("email"), COOKIE_DURATION); 
 		return ok();
 	}
 
 	public static Result addFeedback () {
 		DynamicForm requestData = new DynamicForm().bindFromRequest();
-		FeedbackInfo.create(requestData.get("feature"), requestData.get("email"), requestData.get("details"));
+		FeedbackInfo.create(requestData.get("feature"), requestData.get("email"), requestData.get("details"), requestData.get("landingSite"));
 		response().setCookie("invitee-email", requestData.get("email"), COOKIE_DURATION); 
 		return ok();
 	}

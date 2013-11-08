@@ -20,6 +20,7 @@ create table invitee_user (
   id                        bigint auto_increment not null,
   name                      varchar(255),
   email                     varchar(255),
+  createdat                 varchar(255),
   constraint pk_invitee_user primary key (id))
 ;
 
