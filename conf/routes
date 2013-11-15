@@ -2,8 +2,8 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                   		controllers.Application.index()
-GET     /b                  		controllers.Application.landingV2()
+GET     /                   		controllers.Application.landingV2()
+GET     /b                  		controllers.Application.index()
 GET     /c                   		controllers.Application.landingV3()
 GET		/admin						controllers.Admin.index()
 GET		/admin/reports 				controllers.Admin.reports()
