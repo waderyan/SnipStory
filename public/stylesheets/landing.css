@@ -1,5 +1,5 @@
 /*
-  Landing A
+  Landingv1
 */
 
 #invite-email-field {
@@ -16,10 +16,6 @@
 .footer {
 	margin-left: 30%;
 	margin-right: 35%;
-}
-
-.footer a {
-	color: #FFFFFF;
 }
 
 .logo {
@@ -42,7 +38,8 @@
 }
 
 #joined-thankyou a.btn {
-	background: rgb(0, 109, 204);
+	background: hsl(181, 51%, 80%);
+	color: black;
 	text-decoration: none;
 	margin-top: 10px;
 	margin-right: 5px;
@@ -109,8 +106,18 @@
 	width: 100%;
 }
 
+.landing-btn {
+	background: hsl(181, 51%, 80%);
+	color: black;
+}
+
+.landing-btn:hover {
+	background: hsl(181, 51%, 50%);
+	color: black;
+}
+
 /*
-Landing B
+Landingv2
  */
 
 .landingv2-main {
@@ -129,10 +136,22 @@ Landing B
 	height: 70%;
 }
 
+.form-signup-heading {
+	color: #808184;
+	line-height: 26px;
+	font-size: 24.5px;
+}
+
+.footer-btn {
+	color: #808184;
+}
+
 
 /*
-Landing C
+Landingv4
  */
 
+.landing4-btn {
 
+}
 

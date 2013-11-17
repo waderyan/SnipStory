@@ -1,6 +1,5 @@
 package models.snipstory;
 
-import java.util.*;
 
 import play.db.ebean.*;
 import play.data.validation.Constraints.*;

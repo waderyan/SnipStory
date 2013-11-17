@@ -1,6 +1,39 @@
 
 $(function () {
 
+	function inokeAdwordConversionEvent() {
+		var id = 'gadwords-conversion-tracker';
+		var s = 'script';
+		var doc = document;
+		
+		if (doc.getElementById(id)) return;
+
+		var google_conversion_id = 1019536516;
+		var google_conversion_language = "en";
+		var google_conversion_format = "3";
+		var google_conversion_color = "ffffff";
+		var google_conversion_label = "nXXlCJTIvwgQhMmT5gM";
+		var google_conversion_value = 5;
+		var google_remarketing_only = false;
+
+		var js, img, firstJs = doc.getElementsByTagName(s)[0];
+		js = doc.createElement(s);
+		js.id = id;
+		js.src = "//www.googleadservices.com/pagead/conversion.js";
+
+		firstJs.parentNode.insertBefore(js, firstJs);
+
+		img = doc.createElement('img');
+		img.height = 1;
+		img.width = 1;
+		img.sytle = "border-style:none;";
+		img.alt = "";
+		img.src = "//www.googleadservices.com/pagead/conversion/1019536516/?value=5&amp;label=nXXlCJTIvwgQhMmT5gM&amp;guid=ON&amp;script=0";
+
+		imgDiv = doc.getElementById("gadwords");
+		imgDiv.appendChild(img);
+	}
+
 	$("#signup-btn").click(function () {
 		var emailfield = $("#invite-email-field");
 		var namefield = $("#invite-name-field");
@@ -19,9 +52,9 @@ $(function () {
 			form.append(
 				'<h2 class="form-signup-heading">Thank you!</h2>' +
 				'<div id="joined-thankyou">' + 
-					'<h4>We\'ll be contacting you soon. Contact us at <a href="mailto:snipstory@gmail.com">snipstory@gmail.com</a></h4>' +
+					'<h4 class="form-signup-heading">We\'ll be contacting you soon. Contact us at <a href="mailto:snipstory@gmail.com">snipstory@gmail.com</a></h4>' +
 					'<div>' + 
-						'<a class="pull-left btn btn-large btn-primary" href="#learnMore">Learn More Below.</a>' + 
+						'<a class="landing-btn pull-left btn btn-large btn-primary" href="#learnMore">Learn More Below.</a>' + 
 						//'<button id="pull-right share-btn" class="btn btn-large btn-primary">Share.</button>' + 
 					'</div>' +
 				'</div>'
@@ -38,6 +71,7 @@ $(function () {
 			},
 			success: function () {
 				thankUser();
+				inokeAdwordConversionEvent();
 			},
 			error: function (xhr) {
 				thankUser();
@@ -109,16 +143,7 @@ $(function () {
 		}
 		var comments = $('#commentBox' + formid);
 
-		if (email == null || email.trim() == "") {
-			$('#email-comments' + formid).css("border-color","red");
-			if (comments.val() == null || comments.val().trim() == "") {
-				comments.css("border-color", "red");
-			}
-			return;
-		}
-
 		$.ajax({
-			// TODO - do this with a relative path
 			url: "http://" + document.location.host + "/admin/addFeedback",
 			type: "POST",
 			data: {
@@ -129,6 +154,7 @@ $(function () {
 			},
 			success: function () {
 				LearnMoreInfo.thankUser(view);
+				if (email) inokeAdwordConversionEvent();
 			},
 			error: function (xhr) {
 				console.log("failure!");
@@ -150,7 +176,7 @@ $(function () {
 		view.append($('<textarea maxlength="255" rows="3" id="commentBox' + info.headingId + '" placeholder="' + info.btnPrompt + '"></textarea>'));
 
 		// create submit btn
-		var submitBtn = $('<button class="btn btn-success btn-large">Send</button>');
+		var submitBtn = $('<button class="landing-btn btn btn-success btn-large">Send</button>');
 		submitBtn.click(function() {
 			LearnMoreInfo.submitFeedback(view, info.headingId, hasEmail ? CookieHandler.getCookieValue('invitee-email') : null);
 		});
@@ -171,7 +197,7 @@ $(function () {
 
 		// User Prompt btn
 		var btn = $('<button>' + info.btnPrompt + '</button>');
-		btn.addClass('btn btn-primary btn-large');
+		btn.addClass('landing-btn btn btn-primary btn-large');
 		btn.click(function () {
 			_gaq.push(['_trackEvent', 'btn-' + info.headingId + '-' + document.location.pathname, 'clicked']);
 			$(btn).replaceWith(LearnMoreInfo.createFeedbackForm(info, CookieHandler.isCookie('invitee-email')));
