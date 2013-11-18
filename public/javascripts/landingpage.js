@@ -1,27 +1,34 @@
 
 $(function () {
 
-	function inokeAdwordConversionEvent() {
+	function invokeAdwordConversionEvent() {
 		var id = 'gadwords-conversion-tracker';
 		var s = 'script';
 		var doc = document;
 		
 		if (doc.getElementById(id)) return;
 
-		var google_conversion_id = 1019536516;
-		var google_conversion_language = "en";
-		var google_conversion_format = "3";
-		var google_conversion_color = "ffffff";
-		var google_conversion_label = "nXXlCJTIvwgQhMmT5gM";
-		var google_conversion_value = 5;
-		var google_remarketing_only = false;
+		var data = doc.createElement(s);
+		data.id = "gc-code";
+		data.type = "text/javascript";
 
 		var js, img, firstJs = doc.getElementsByTagName(s)[0];
 		js = doc.createElement(s);
 		js.id = id;
 		js.src = "//www.googleadservices.com/pagead/conversion.js";
 
+		firstJs.parentNode.insertBefore(data, firstJs);
 		firstJs.parentNode.insertBefore(js, firstJs);
+
+		document.getElementById('gc-code').innerHTML = "/* <![CDATA[ */\n" + 
+			"var google_conversion_id = 1019536516;\n" +
+			"var google_conversion_language = 'en';\n" +
+			"var google_conversion_format = '3';\n" +
+			"var google_conversion_color = 'ffffff';\n" +
+			"var google_conversion_label = 'nXXlCJTIvwgQhMmT5gM';\n" +
+			"var google_conversion_value = 5;\n" +
+			"var google_remarketing_only = false;\n" +
+			"/* ]]> */";
 
 		img = doc.createElement('img');
 		img.height = 1;
@@ -71,7 +78,7 @@ $(function () {
 			},
 			success: function () {
 				thankUser();
-				inokeAdwordConversionEvent();
+				invokeAdwordConversionEvent();
 			},
 			error: function (xhr) {
 				thankUser();
@@ -154,7 +161,7 @@ $(function () {
 			},
 			success: function () {
 				LearnMoreInfo.thankUser(view);
-				if (email) inokeAdwordConversionEvent();
+				if (email) invokeAdwordConversionEvent();
 			},
 			error: function (xhr) {
 				console.log("failure!");
