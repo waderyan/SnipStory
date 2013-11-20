@@ -2,26 +2,24 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                   		controllers.Application.landingV2()
-GET     /b                  		controllers.Application.index()
-GET     /c                   		controllers.Application.landingV3()
-GET		/admin						controllers.Admin.index()
-GET		/admin/reports 				controllers.Admin.reports()
-POST	/admin/addInvitee			controllers.Admin.addInvitee()
+GET     /                   		controllers.landing.Application.landingV2()
+GET     /b                  		controllers.landing.Application.index()
+GET     /c                   		controllers.landing.Application.landingV3()
+GET		/admin						controllers.landing.Admin.index()
+GET		/admin/reports 				controllers.landing.Admin.reports()
+POST	/admin/addInvitee			controllers.landing.Admin.addInvitee()
 
 # --------------------------
 # -----   Admin  -----------
 # --------------------------
-GET		/admin/invitees					controllers.Admin.getInvitees()
-GET 	/admin/invitees/exportCSV		controllers.Admin.exportInvitees()
-POST	/admin/addFeedback				controllers.Admin.addFeedback()
-GET     /admin/feedback                 controllers.Admin.getFeedback()
-
-GET 	/dashboard 					controllers.Dashboard.index()
+GET		/admin/invitees					controllers.landing.Admin.getInvitees()
+GET 	/admin/invitees/exportCSV		controllers.landing.Admin.exportInvitees()
+POST	/admin/addFeedback				controllers.landing.Admin.addFeedback()
+GET     /admin/feedback                 controllers.landing.Admin.getFeedback()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Login for Admin pages
-GET     /login                  	controllers.Admin.login()
-POST	/login						controllers.Admin.authenticate()
+GET     /login                  	controllers.landing.Admin.login()
+POST	/login						controllers.landing.Admin.authenticate()

@@ -5,6 +5,9 @@
 # except for .gitignore
 !.gitignore
 
+# ignore application.conf.
+conf/application.conf
+
 # Ignore Play! working directory #
 db
 eclipse

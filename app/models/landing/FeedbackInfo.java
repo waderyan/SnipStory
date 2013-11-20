@@ -1,4 +1,4 @@
-package models.admin;
+package models.landing;
 
 import java.util.*;
 import play.db.ebean.*;

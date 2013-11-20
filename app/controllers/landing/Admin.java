@@ -1,29 +1,33 @@
-package controllers;
+package controllers.landing;
 
 import static play.libs.Json.toJson;
 
 import java.io.InputStream;
 
-import models.admin.AdminUser;
-import models.admin.FeedbackInfo;
-import models.admin.InviteeUser;
+import controllers.routes;
+
+import models.landing.AdminUser;
+import models.landing.FeedbackInfo;
+import models.landing.InviteeUser;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 
+import views.html.landing.*;
+
 public class Admin extends Controller {
 
 	static final int COOKIE_DURATION = 60 * 60 * 24 * 3;
 
 	public static Result index () {
-		return redirect(routes.Admin.reports());
+		return redirect(controllers.landing.routes.Admin.reports());
 	}
 
 	@Security.Authenticated(Secured.class)
 	public static Result reports () {
-		return ok(views.html.admin.reports.render());
+		return ok(views.html.landing.reports.render());
 	}
 
 	@Security.Authenticated(Secured.class)
@@ -74,19 +78,19 @@ public class Admin extends Controller {
 	
 	public static Result login() {
 		return ok(
-			views.html.admin.login.render(Form.form(Login.class))
+			views.html.landing.login.render(Form.form(Login.class))
 		);
 	}
 	
 	public static Result authenticate() {
 		Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
 		if (loginForm.hasErrors()) {
-			return badRequest(views.html.admin.login.render(loginForm));
+			return badRequest(views.html.landing.login.render(loginForm));
 		} else {
 			session().clear();
 			session("email", loginForm.get().email);
 			return redirect(
-				routes.Admin.index()
+				controllers.landing.routes.Admin.index()
 			);
 		}
 	}
